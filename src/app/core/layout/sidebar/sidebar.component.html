@@ -1,6 +1,34 @@
 <mat-drawer-container class="sidebar-container">
-    <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-    <mat-drawer-content>
+    <mat-drawer mode="side" opened>
+        <div class="side-menu">
+            <div class="user">
+                <h3>Administrador</h3>
+                <hr>
+            </div>
+            <div>
+                <ul>
+                    <li *ngFor="let item of menuItems">
+                        <a [routerLink]="item.url">
+                            <img [src]="item.image" />
+                            <span>{{item.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <hr class="mt-30">
+                <ul>
+                    <li>
+                        <a routerLink="/">
+                            <img src="../../../../assets/images/menu/settings.png" />
+                            <span>Configuraciones</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content class="p1">        
         <ng-content></ng-content>
     </mat-drawer-content>
 </mat-drawer-container>

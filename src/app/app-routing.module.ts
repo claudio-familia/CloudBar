@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import GENERAL_ROUTES from './routes/general.routes';
 
 const routes: Routes = [
-  ...GENERAL_ROUTES
+  ...GENERAL_ROUTES,
+  {path:'**', redirectTo:'home'}
 ];
 
 @NgModule({

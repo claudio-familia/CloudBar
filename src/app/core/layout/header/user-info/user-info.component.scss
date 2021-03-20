@@ -1,0 +1,11 @@
+.user-info {
+    display: flex;    
+    flex-direction: row;
+
+    h3 {
+        padding: 3px 5px;
+    }
+    img {
+        width: 40px;
+    }
+}
