@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { GeneralModule } from './features/general/general.module';
+import { SecurityModule } from './features/security/security.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { GeneralModule } from './features/general/general.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    GeneralModule
+    GeneralModule,
+    SecurityModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

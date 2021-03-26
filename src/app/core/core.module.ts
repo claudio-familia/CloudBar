@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import { UserInfoComponent } from './layout/header/user-info/user-info.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { ToastrModule } from 'ngx-toastr';
+import { MatSelectFilterModule } from 'mat-select-filter';
+import { MaterialModule } from './material-design/material.module';
 
 
 
@@ -18,13 +17,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
     SidebarComponent,
     UserInfoComponent
   ],
-  exports: [LayoutComponent],
+  exports: [LayoutComponent, MaterialModule],
   imports: [
     CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatGridListModule
+    MaterialModule,
+    MatSelectFilterModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      progressAnimation: 'increasing',
+      enableHtml: true
+    })
   ]
 })
 export class CoreModule { }

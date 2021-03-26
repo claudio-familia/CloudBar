@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import {MatCardModule} from '@angular/material/card';
+import { HomeComponent } from './components/home/home.component';
+import { PeopleComponent } from './components/people/people.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, PeopleComponent],
   imports: [
     CommonModule,
-    MatCardModule
+    CoreModule
   ]
 })
 export class GeneralModule { }
