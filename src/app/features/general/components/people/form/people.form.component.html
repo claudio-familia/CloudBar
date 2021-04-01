@@ -1,0 +1,7 @@
+<app-card [title]="title" [subtitle]="subtitle">
+    <app-dynamicform [form]="form" 
+                     [formGroup]="formGroup" 
+                     [oneColumn]="false" 
+                     [indexRoute]="'people'" 
+                     (onSave)="createUpdatePerson($event)"></app-dynamicform>
+</app-card>

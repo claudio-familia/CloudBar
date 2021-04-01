@@ -1,1 +1,18 @@
-<p>people works!</p>
+<app-card title="Personas" subtitle="Inicio / Personas">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/people/create">
+                    Nueva persona <mat-icon>perm_identity</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="people" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>

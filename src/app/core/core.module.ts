@@ -7,6 +7,7 @@ import { UserInfoComponent } from './layout/header/user-info/user-info.component
 import { ToastrModule } from 'ngx-toastr';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { MaterialModule } from './material-design/material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,6 +23,7 @@ import { MaterialModule } from './material-design/material.module';
     CommonModule,
     MaterialModule,
     MatSelectFilterModule,
+    RouterModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',

@@ -1,9 +1,12 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { DynamicForm } from 'src/app/models/dynamic-form.model'
 import { AlertService } from '../../../services/alert.service'
 
 export class BaseComponent {    
     constructor(private alertService: AlertService) {
     }
     getHttpErrorResponse(error: any){
+        console.log(error)
         switch (error.status) {
             case 401:                                
               return this.alertService.ModalNotification(
@@ -34,5 +37,31 @@ export class BaseComponent {
             case undefined:
                 return this.alertService.ToasterNotification('Error','Oops! Ha ocurrido un error.','error')
           }
+    }   
+    
+    getFormGroup(form: DynamicForm[]): FormGroup {
+        const group = {};
+
+        form.forEach(item => {
+            console.log(item)
+          const valueObj = {value: item.value, disabled: item.isDisabled };
+          
+          const validatorObj = [];
+          if(item.isRequired) validatorObj.push(Validators.required)
+
+          group[item.name] = new FormControl(valueObj, validatorObj);
+        });    
+    
+        return new FormGroup(group);
     }
+
+    setTable(columns: string[], headers: string[]) {
+        const tableColumn = [...columns];
+        const tableHeader = [...headers];
+
+        return {
+            headers: tableHeader,
+            columns: tableColumn
+        }
+    }         
 }

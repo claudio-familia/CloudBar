@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { config } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class BaseService<T> {
   _headers: HttpHeaders
 
   constructor(baseUrl:string, private http: HttpClient) {
-    this._apiUrl = `${config.ApiUrl}/${baseUrl}`;
+    this._apiUrl = `${environment.ApiUrl}/${baseUrl}`;
     const token = localStorage.getItem('api-token');
     this._headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }

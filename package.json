@@ -25,6 +25,7 @@
     "@ngrx/store-devtools": "^11.0.1",
     "express": "^4.17.1",
     "mat-select-filter": "^2.3.7",
+    "ngx-mask": "^11.1.5",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.15.6",

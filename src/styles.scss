@@ -46,10 +46,21 @@ body {
 
 }
 
+.w-100 {
+  width: 100% !important;
+}
+
+.pull-right {
+  float: right;
+}
+mat-card-content {
+  padding: 16px;
+}
+
 app-root {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 

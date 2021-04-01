@@ -1,47 +1,40 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DynamicForm } from 'src/app/models/dynamic-form.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dynamicform',
   templateUrl: './dynamicform.component.html',
-  styleUrls: ['./dynamicform.component.css']
+  styleUrls: ['./dynamicform.component.scss']
 })
 export class DynamicformComponent implements OnInit {
-  @Input() form: DynamicForm[]
-  @Output() onSave: EventEmitter<any> = new EventEmitter<any>()
-  constructor(private _alertService:AlertService) { }
+  @Input() form: DynamicForm[]  
+  @Input() formGroup: FormGroup;
+  @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
 
-  ngOnInit() {    
+  @Input() oneColumn: Boolean = true;
+  @Input() indexRoute: string;
+
+
+  constructor(private _alertService:AlertService, private _router: Router) {
   }
 
-  save(form: any){
-    if(form.valid){
-      const formCapture = [];
-      for(let item of this.form){
-        formCapture.push({...item})
-      }
-  
-      const response = [];
-  
-      formCapture.map(item => {      
-        response.push({
-          'field': item.name, 
-          'value': item.value
-        })
-      });
-      
-      this.onSave.emit(response);
-      this.cancel();
+  ngOnInit() {
+  }  
+
+  save(){
+    const form = this.formGroup;    
+    console.log(form, form.value)
+    if(form.valid){                  
+      this.onSave.emit(form.value);
     }else{
       this._alertService.ToasterNotification('Aviso','Favor completar los campos requeridos','info')
     }
   }  
 
   cancel(){
-    this.form.map(item => {
-      item.value = ''
-    });    
+    this._router.navigate([this.indexRoute]);
   }
-
 }
