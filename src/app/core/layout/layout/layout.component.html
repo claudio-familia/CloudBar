@@ -1,6 +1,8 @@
 <div class="layout">
-    <app-header></app-header>
-    <app-sidebar>
+    <app-header *ngIf="hasLoggin"></app-header>
+    <app-sidebar *ngIf="hasLoggin">
         <ng-content></ng-content>
     </app-sidebar>
+    
+    <ng-content *ngIf="!hasLoggin"></ng-content>
 </div>

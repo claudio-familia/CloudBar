@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _store: Store<AppState>) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
   }
 
 }

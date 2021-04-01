@@ -4,10 +4,12 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {    
-    constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    constructor(private http: HttpClient, 
+                private jwtHelper: JwtHelperService) {
     }
 
     signIn(username: string, password: string): Observable<LoginModel> {
@@ -16,8 +18,10 @@ export class AuthService {
     }
 
     signOut() {
-        localStorage.removeItem('api-token')
-        localStorage.removeItem('app-user')
+        console.log('getting out')
+        localStorage.removeItem('api-token');
+        localStorage.removeItem('app-user');
+        window.location.href = '/login'        
     }
 
     validateToken(): Boolean {

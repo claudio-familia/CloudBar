@@ -1,6 +1,13 @@
+@import '../../../../../assets/scss/core/colors';
+
 .user-info {
     display: flex;    
     flex-direction: row;
+    cursor: pointer;
+
+    :hover {
+        color: $secondary;
+    }
 
     h3 {
         padding: 3px 5px;

@@ -1,4 +1,14 @@
-<div class="user-info">
+<div class="user-info" [matMenuTriggerFor]="beforeMenu" title="Menu de usuario">
     <h3>Administrador</h3>
     <img src="../../../../../assets/images/navbar/profile-user.png" />
 </div>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>        
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Información de usuario</span>  
+    </button>
+    <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar session</span>        
+    </button>
+</mat-menu>
