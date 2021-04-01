@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {    
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     }
 
     signIn(username: string, password: string): Observable<LoginModel> {
@@ -19,9 +20,8 @@ export class AuthService {
         localStorage.removeItem('app-user')
     }
 
-    validate() {
+    validateToken(): Boolean {
         const token = localStorage.getItem('api-token');
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        return this.http.post(`${environment.ApiUrl}/auth/validate`, {}, {headers: headers});
+        return !this.jwtHelper.isTokenExpired(token);
     }
 }

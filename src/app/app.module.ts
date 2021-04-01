@@ -9,6 +9,7 @@ import { GeneralModule } from './features/general/general.module';
 import { SecurityModule } from './features/security/security.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { JwtModule } from '@auth0/angular-jwt'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     CoreModule,
     GeneralModule,
     SecurityModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument()
   ],
@@ -28,3 +34,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function tokenGetter() {
+  return localStorage.getItem('api-token');
+}

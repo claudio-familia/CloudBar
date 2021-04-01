@@ -23,7 +23,7 @@ export class LoginComponent {
                 private _store: Store<AppState>) {
     }
     
-    login(){        
+    login(){
         const response = this._authService.signIn(this.username, this.password);
         response.subscribe(
             res => {

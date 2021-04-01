@@ -12,12 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _store: Store<AppState>) { }
 
-  ngOnInit(): void {
-    this._store.select(hasLogin).subscribe(
-      res => { 
-        console.log(res)
-       }
-    )
+  ngOnInit(): void {   
   }
 
 }

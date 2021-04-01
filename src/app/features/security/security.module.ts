@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { FeatureStates } from 'src/app/core/store/app.constant';
 import { securityReducer } from './state/security.reducer';
+import { JwtModule } from '@auth0/angular-jwt'
 
 
 
@@ -18,7 +19,11 @@ import { securityReducer } from './state/security.reducer';
     CoreModule,
     FormsModule,
     HttpClientModule,
+    JwtModule,
     StoreModule.forFeature(FeatureStates.security, securityReducer)
   ],
+  exports: [
+    JwtModule
+  ]
 })
 export class SecurityModule { }
