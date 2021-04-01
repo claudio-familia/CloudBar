@@ -6,7 +6,7 @@
                 <hr>
             </div>
             <div>
-                <ul>
+                <ul class="main-menu">
                     <li *ngFor="let item of menuItems">
                         <a [routerLink]="item.url">
                             <img [src]="item.image" />
@@ -16,13 +16,22 @@
                 </ul>
             </div>
             <div>
-                <hr class="mt-30">
-                <ul>
+                <hr>
+                <ul class="setting-menu">
                     <li>
-                        <a href="#">
+                        <a (click)="openSubMenu()">
                             <img src="../../../../assets/images/menu/settings.png" />
                             <span>Configuraciones</span>
+                            <mat-icon>{{iconSettings}}</mat-icon>
                         </a>
+                        <ul *ngIf="isSettingsOpen">
+                            <li  *ngFor="let item of settingMenuItems">
+                                <a [routerLink]="item.url">
+                                    <mat-icon class="img-icon">{{item.image}}</mat-icon>
+                                    <span>{{item.title}}</span>
+                                </a>
+                            </li>                            
+                        </ul>
                     </li>
                 </ul>
             </div>
