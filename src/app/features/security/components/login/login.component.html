@@ -1,10 +1,14 @@
-<div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-        <mat-card class="login-card">
-            <mat-card-header>
-                <mat-card-title>Login</mat-card-title>
-                <mat-card-subtitle>CloudBar</mat-card-subtitle>
-            </mat-card-header>
+<div class="login">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+        <mat-card class="mat-elevation-z8">
+            <div>
+                <img src="../../../../../assets/images/login/cocktail.png" />
+                <br>
+                <mat-card-header>                                
+                    <mat-card-title>Iniciar sesión</mat-card-title>
+                    <mat-card-subtitle>CloudBar</mat-card-subtitle>
+                </mat-card-header>
+            </div>
             <mat-card-content class="main">
                 <p>
                     <mat-form-field class="w-100">
@@ -23,7 +27,7 @@
                     </mat-form-field>
                 </p>
             </mat-card-content>
-            <mat-card-actions class="text-center">
+            <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="login()" class="btn-login">Login</button>
             </mat-card-actions>
         </mat-card>

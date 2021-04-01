@@ -1,15 +1,32 @@
-.w-100 {
-    width: 100%;
-}
+.login {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.login-card {
-    top: 20vh;
-}
+    mat-card {
+        div {
+            img {
+                width: 64px;
+            }
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+    }
 
-.main {
-    margin: 0 16px;
-}
-
-.btn-login {
-    width: 250px;
+    mat-card-actions {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main {
+        margin: 0 16px;
+    }
+    
+    .btn-login {
+        width: 250px;
+        margin-bottom: 15px;
+    }
 }
