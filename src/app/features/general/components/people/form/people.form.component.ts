@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BaseComponent } from "src/app/features/shared/base/base.component";
-import { DynamicForm } from "src/app/models/dynamic-form.model";
-import { AlertService } from "src/app/services/alert.service";
+import { DynamicForm } from "src/app/core/models/dynamic-form.model";
+import { AlertService } from "src/app/core/services/alert.service";
 import { Person } from "../../../models/person";
 import { PeopleService } from "../../../services/people.service";
 

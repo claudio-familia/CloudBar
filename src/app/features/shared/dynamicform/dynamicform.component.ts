@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DynamicForm } from 'src/app/models/dynamic-form.model';
-import { AlertService } from 'src/app/services/alert.service';
+import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 

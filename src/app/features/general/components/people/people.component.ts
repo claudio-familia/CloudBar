@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/features/shared/base/base.component';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { Person } from '../../models/person';
 import { PeopleService } from '../../services/people.service';
 

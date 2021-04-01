@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BaseService } from 'src/app/services/base.service';
+import { BaseService } from 'src/app/core/services/base.service';
 import { environment } from 'src/environments/environment';
 import { Person } from '../models/person';
 
@@ -9,6 +9,6 @@ import { Person } from '../models/person';
 })
 export class PeopleService extends BaseService<Person> {  
   constructor(public httpClient: HttpClient) {
-    super(environment.urls.person, httpClient);    
+    super(environment.urls.person, httpClient);
   }
 }

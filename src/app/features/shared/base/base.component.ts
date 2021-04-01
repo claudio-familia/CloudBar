@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { DynamicForm } from 'src/app/models/dynamic-form.model'
-import { AlertService } from '../../../services/alert.service'
+import { DynamicForm } from 'src/app/core/models/dynamic-form.model'
+import { AlertService } from '../../../core/services/alert.service'
 
 export class BaseComponent {    
     constructor(private alertService: AlertService) {
