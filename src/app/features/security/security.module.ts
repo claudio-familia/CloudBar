@@ -9,14 +9,26 @@ import { StoreModule } from '@ngrx/store';
 import { FeatureStates } from 'src/app/core/store/app.constant';
 import { securityReducer } from './state/security.reducer';
 import { JwtModule } from '@auth0/angular-jwt'
+import { UserComponent } from './components/users/user.component';
+import { UserFormComponent } from './components/users/form/user.form.component';
+import { RoleComponent } from './components/roles/role.component';
+import { RoleFormComponent } from './components/roles/form/role.form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+    UserComponent,
+    UserFormComponent,
+    RoleComponent,
+    RoleFormComponent
+  ],
   imports: [
     CommonModule,
     CoreModule,
+    SharedModule,
     FormsModule,
     HttpClientModule,
     JwtModule,

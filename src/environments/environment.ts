@@ -8,6 +8,8 @@ export const environment = {
   urls: {
     person: 'people',
     parameter: 'parameters',
-    place: 'places'
+    place: 'places',
+    user: 'users',
+    role: 'roles'
   }
 };

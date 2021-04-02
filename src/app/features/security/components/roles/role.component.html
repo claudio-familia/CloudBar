@@ -1,0 +1,18 @@
+<app-card title="Roles" subtitle="Inicio / Roles">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/users/create">
+                    Nuevo role <mat-icon>assignment_ind</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="roles" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>

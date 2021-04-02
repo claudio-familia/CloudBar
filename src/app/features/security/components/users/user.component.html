@@ -1,0 +1,18 @@
+<app-card title="Usuarios" subtitle="Inicio / Usuarios">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/users/create">
+                    Nuevo usuario <mat-icon>manage_accounts</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="users" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>
