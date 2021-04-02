@@ -39,10 +39,15 @@ export class PeopleComponent extends BaseComponent implements OnInit {
   }
 
   deletePerson(id: any) {
-    this._peopleService.delete(id).subscribe(
-      res => this._alertService.ToasterNotification('Operación exitosa', 'Persona borrada correctamente', 'success'),
-      err => this.getHttpErrorResponse(err)
-    )
+    this._alertService.ModalNotification('¿Está seguro?', 'Esta a punto de borrar el siguiente registro...', 'question')
+    .then(res => {
+      if(res.isConfirmed){
+        this._peopleService.delete(id).subscribe(
+          res => this._alertService.ToasterNotification('Operación exitosa', 'Persona borrada correctamente', 'success'),
+          err => this.getHttpErrorResponse(err)
+        )
+      }
+    })    
   }
 
 }

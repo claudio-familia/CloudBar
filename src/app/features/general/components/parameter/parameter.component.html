@@ -1,1 +1,18 @@
-<p>parameter works!</p>
+<app-card title="Parametros" subtitle="Inicio / Parametros">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/parameters/create">
+                    Nuevo parametro <mat-icon>label_important</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="parameters" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>

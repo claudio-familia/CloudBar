@@ -25,9 +25,8 @@ export class DynamicformComponent implements OnInit {
   }  
 
   save(){
-    const form = this.formGroup;    
-    console.log(form, form.value)
-    if(form.valid){                  
+    const form = this.formGroup;
+    if(form.valid){
       this.onSave.emit(form.value);
     }else{
       this._alertService.ToasterNotification('Aviso','Favor completar los campos requeridos','info')

@@ -8,12 +8,22 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PlaceComponent } from './components/place/place.component';
 import { ParameterComponent } from './components/parameter/parameter.component';
+import { ParameterFormComponent } from './components/parameter/form/parameter.form.component';
+import { PlaceFormComponent } from './components/place/form/place.form.component';
 
 
 
 
 @NgModule({
-  declarations: [HomeComponent, PeopleComponent, PeopleFormComponent, PlaceComponent, ParameterComponent],
+  declarations: [
+    HomeComponent, 
+    PeopleComponent, 
+    PeopleFormComponent, 
+    PlaceComponent, 
+    PlaceFormComponent,
+    ParameterComponent,
+    ParameterFormComponent,
+  ],
   imports: [
     CommonModule,
     CoreModule,

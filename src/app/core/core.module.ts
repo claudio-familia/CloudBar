@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { MaterialModule } from './material-design/material.module';
 import { RouterModule } from '@angular/router';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 
 
 
@@ -16,9 +17,10 @@ import { RouterModule } from '@angular/router';
     LayoutComponent, 
     HeaderComponent, 
     SidebarComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    LoginLayoutComponent
   ],
-  exports: [LayoutComponent, MaterialModule],
+  exports: [LayoutComponent, MaterialModule, LoginLayoutComponent],
   imports: [
     CommonModule,
     MaterialModule,

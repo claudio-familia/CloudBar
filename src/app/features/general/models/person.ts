@@ -1,5 +1,6 @@
-export class Person {
-    id?: number;
+import { BaseEntity } from "src/app/core/models/base.model";
+
+export class Person extends BaseEntity {    
     identification: string;
     name: string;
     lastName: string;

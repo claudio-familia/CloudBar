@@ -8,12 +8,18 @@
                 <input matInput [type]="item.type" class="form-control"
                     [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name"
                     [formControlName]="item.name" [placeholder]="item.placeholder ? item.placeholder : ''"
-                    [value]="item.value ? item.value : ''"
-                    [mask]="item.mask"
-                    [required]="item.isRequired">
-                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ? item.validationMessage : 'Campo requerido*' }}.</mat-error>                
+                    [value]="item.value ? item.value : ''" [mask]="item.mask" [required]="item.isRequired">
+                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ?
+                    item.validationMessage : 'Campo requerido*' }}.</mat-error>
             </mat-form-field>
             
+            <p *ngIf="item.type == 'checkbox'">
+                <mat-radio-group [formControlName]="item.name" [value]="item.value">
+                    <mat-radio-button [value]="true">Si</mat-radio-button>
+                    <mat-radio-button [value]="false">No</mat-radio-button>
+                </mat-radio-group>
+            </p>
+
             <mat-form-field appearance="legacy" *ngIf="item.type == 'date'" class="w-100 input-form">
                 <input matInput [matDatepicker]="dp" disabled type="text" class="form-control"
                     [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name"
@@ -21,7 +27,8 @@
                     [value]="item.value ? item.value : ''" [required]="item.isRequired">
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp [disabled]="item.isDisabled ? true : false"></mat-datepicker>
-                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ? item.validationMessage : 'Campo requerido*' }}.</mat-error>                
+                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ?
+                    item.validationMessage : 'Campo requerido*' }}.</mat-error>
             </mat-form-field>
 
             <mat-form-field class="w-100 input-form" *ngIf="item.type == 'select'">
@@ -33,7 +40,8 @@
                         {{option.name}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ? item.validationMessage : 'Campo requerido*' }}.</mat-error>                
+                <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ?
+                    item.validationMessage : 'Campo requerido*' }}.</mat-error>
             </mat-form-field>
         </div>
         <div class="col-12">

@@ -43,9 +43,8 @@ export class BaseComponent {
         const group = {};
 
         form.forEach(item => {
-            console.log(item)
           const valueObj = {value: item.value, disabled: item.isDisabled };
-          
+
           const validatorObj = [];
           if(item.isRequired) validatorObj.push(Validators.required)
 

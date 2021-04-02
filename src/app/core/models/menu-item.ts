@@ -43,8 +43,18 @@ export const MENU: MenuItem[] = [
 ];
 export const SETTINGMENU: MenuItem[] = [
     {
-        title: 'People',
+        title: 'Personal',
         url: 'people',
         image: 'person'
+    },
+    {
+        title: 'Franquicias',
+        url: 'places',
+        image: 'store_front'
+    },
+    {
+        title: 'Parametros',
+        url: 'parameters',
+        image: 'label_important'
     }
 ];

@@ -5,7 +5,7 @@ export class DynamicForm {
     valueFiltered?: any[]
     label: string
     type: string
-    placeholder: string = ''   
+    placeholder?: string = ''   
     class?: string;
     mask?: string;
     isRequired?: boolean = false;
