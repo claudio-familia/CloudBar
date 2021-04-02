@@ -65,17 +65,21 @@ app-root {
 }
 
 
-app-root::-webkit-scrollbar {
+app-root::-webkit-scrollbar, .mat-drawer-inner-container::-webkit-scrollbar {
   width: 0.3rem;  
 }
 
-app-root::-webkit-scrollbar-track {
+app-root::-webkit-scrollbar-track, 
+.mat-drawer-inner-container::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   
 }
 
-app-root::-webkit-scrollbar-thumb {
+app-root::-webkit-scrollbar-thumb, .mat-drawer-inner-container::-webkit-scrollbar-thumb {
   background-color: rgb(119, 116, 116);  
   border-radius: 90px;
 }
 
+.mat-drawer-inner-container {    
+  overflow: auto;
+}
