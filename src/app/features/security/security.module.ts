@@ -14,6 +14,7 @@ import { UserFormComponent } from './components/users/form/user.form.component';
 import { RoleComponent } from './components/roles/role.component';
 import { RoleFormComponent } from './components/roles/form/role.form.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -31,6 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     JwtModule,
     StoreModule.forFeature(FeatureStates.security, securityReducer)
   ],

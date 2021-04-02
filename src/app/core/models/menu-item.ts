@@ -45,7 +45,22 @@ export const SETTINGMENU: MenuItem[] = [
     {
         title: 'Personal',
         url: 'people',
-        image: 'person'
+        image: 'people'
+    },
+    {
+        title: 'Usuarios',
+        url: 'users',
+        image: 'manage_accounts'
+    },
+    {
+        title: 'Roles de usuario',
+        url: 'roles',
+        image: 'assignment_ind'
+    },
+    {
+        title: 'Categorias de articulos',
+        url: 'categories',
+        image: 'style'
     },
     {
         title: 'Franquicias',

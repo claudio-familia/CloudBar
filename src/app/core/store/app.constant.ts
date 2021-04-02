@@ -1,3 +1,5 @@
 export const FeatureStates = {
-    security: 'security'
+    security: 'security',
+    general: 'general',
+    warehouse: 'warehouse'
 }

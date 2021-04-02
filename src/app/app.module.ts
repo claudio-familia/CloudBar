@@ -10,6 +10,7 @@ import { SecurityModule } from './features/security/security.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { JwtModule } from '@auth0/angular-jwt'
+import { WarehouseModule } from './features/warehouse/warehouse.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { JwtModule } from '@auth0/angular-jwt'
     CoreModule,
     GeneralModule,
     SecurityModule,
+    WarehouseModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

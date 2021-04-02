@@ -10,6 +10,7 @@ export const environment = {
     parameter: 'parameters',
     place: 'places',
     user: 'users',
-    role: 'roles'
+    role: 'roles',
+    category: 'categories',
   }
 };
