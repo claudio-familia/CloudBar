@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { FormGroup } from '@angular/forms';
@@ -13,16 +13,21 @@ export class DynamicformComponent implements OnInit {
   @Input() form: DynamicForm[]  
   @Input() formGroup: FormGroup;
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onImageUpload: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() oneColumn: Boolean = true;
   @Input() indexRoute: string;
 
 
-  constructor(private _alertService:AlertService, private _router: Router) {
+  constructor(private _alertService:AlertService, private _router: Router, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
   }  
+
+  onFileChange(event: any) {
+    this.onImageUpload.emit(event);
+  }
 
   save(){
     const form = this.formGroup;

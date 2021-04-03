@@ -5,14 +5,14 @@
             <mat-form-field
                 *ngIf="item.type == 'text' || item.type == 'number' || item.type == 'password' || item.type == 'email'"
                 appearance="legacy" [hideRequiredMarker]="false" [floatLabel]="false" class="w-100 input-form">
-                <input matInput [type]="item.type" class="form-control"
-                    [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name"
-                    [formControlName]="item.name" [placeholder]="item.placeholder ? item.placeholder : ''"
-                    [value]="item.value ? item.value : ''" [mask]="item.mask" [required]="item.isRequired">
+                <input matInput [type]="item.type" [ngClass]="(item.class != undefined) ? item.class : ''"
+                    [name]="item.name" [id]="item.name" [formControlName]="item.name"
+                    [placeholder]="item.placeholder ? item.placeholder : ''" [value]="item.value ? item.value : ''"
+                    [mask]="item.mask" [required]="item.isRequired">
                 <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ?
                     item.validationMessage : 'Campo requerido*' }}.</mat-error>
             </mat-form-field>
-            
+
             <p *ngIf="item.type == 'checkbox'">
                 <mat-radio-group [formControlName]="item.name" [value]="item.value">
                     <mat-radio-button [value]="true">Si</mat-radio-button>
@@ -20,8 +20,24 @@
                 </mat-radio-group>
             </p>
 
+
+            <div class="file-field input-field" *ngIf="item.type == 'file'">
+                <div class="btn">
+                    <span>File</span>
+                    <input type="file" accept="image/*" [formControlName]="item.name" (change)="item.value = $event.target.files[0]; onFileChange($event.target.files[0])">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" 
+                           id="file-input" 
+                           [value]="item.value ? item.value.name : ''" 
+                           [placeholder]="item.placeholder" 
+                           type="text">
+                </div>
+            </div>
+
+
             <mat-form-field appearance="legacy" *ngIf="item.type == 'date'" class="w-100 input-form">
-                <input matInput [matDatepicker]="dp" disabled type="text" class="form-control"
+                <input matInput [matDatepicker]="dp" disabled type="text"
                     [ngClass]="(item.class != undefined) ? item.class : ''" [name]="item.name" [id]="item.name"
                     [formControlName]="item.name" [placeholder]="item.placeholder ? item.placeholder : ''"
                     [value]="item.value ? item.value : ''" [required]="item.isRequired">

@@ -8,7 +8,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { MaterialModule } from './material-design/material.module';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -26,6 +29,8 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
     MaterialModule,
     MatSelectFilterModule,
     RouterModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',
