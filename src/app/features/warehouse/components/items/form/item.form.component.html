@@ -1,0 +1,11 @@
+<app-card [title]="title" [subtitle]="subtitle">
+    <div class="row">
+        <div class="col-3">
+            <img [src]="image ? image : '../../../../../../assets/images/placeholder.png'" class="col-12 mat-elevation-z1" alt="Categoria">
+        </div>
+        <div class="col-7">
+            <app-dynamicform [form]="form" [formGroup]="formGroup" [indexRoute]="'items'"
+                (onImageUpload)="setImage($event)" (onSave)="createUpdateData($event)"></app-dynamicform>
+        </div>
+    </div>
+</app-card>

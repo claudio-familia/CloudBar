@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="save()">
+<form *ngIf="formGroup && form" [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="row">
         <div [ngClass]="oneColumn ? 'col-12' : 'col-6'" *ngFor="let item of form">
             <label [for]="item.name">{{item.label}}</label><br>
@@ -49,7 +49,7 @@
 
             <mat-form-field class="w-100 input-form" *ngIf="item.type == 'select'">
                 <mat-select name="item.name" [required]="item.isRequired" #select [placeholder]="item.placeholder"
-                    [(ngModel)]="item.value">
+                [formControlName]="item.name" [value]="item.value">
                     <mat-select-filter *ngIf="select.focused" [placeholder]="'Buscar'" [displayMember]="'name'"
                         [array]="item.valueArray" (filteredReturn)="item.valueFiltered=$event"></mat-select-filter>
                     <mat-option *ngFor="let option of item.valueFiltered" [value]="option.id">

@@ -22,5 +22,6 @@ export const environment = {
     user: 'users',
     role: 'roles',
     category: 'categories',
+    item: 'items'
   }
 };

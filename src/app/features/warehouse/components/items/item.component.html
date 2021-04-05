@@ -1,0 +1,18 @@
+<app-card title="Articulos" subtitle="Inicio / Articulos">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/items/create">
+                    Nueva articulo <mat-icon>category</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="items" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>

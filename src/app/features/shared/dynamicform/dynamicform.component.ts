@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { FormGroup } from '@angular/forms';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './dynamicform.component.html',
   styleUrls: ['./dynamicform.component.scss']
 })
-export class DynamicformComponent implements OnInit {
+export class DynamicformComponent implements OnChanges {
   @Input() form: DynamicForm[]  
   @Input() formGroup: FormGroup;
   @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
@@ -19,11 +19,11 @@ export class DynamicformComponent implements OnInit {
   @Input() indexRoute: string;
 
 
-  constructor(private _alertService:AlertService, private _router: Router, private cd: ChangeDetectorRef) {
+  constructor(private _alertService:AlertService, private _router: Router) {
   }
 
-  ngOnInit() {
-  }  
+  ngOnChanges() {
+  }
 
   onFileChange(event: any) {
     this.onImageUpload.emit(event);

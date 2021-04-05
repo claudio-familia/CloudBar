@@ -7,18 +7,23 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryFormComponent } from './components/category/form/category.form.component';
 import { RouterModule } from '@angular/router';
+import { ItemFormComponent } from './components/items/form/item.form.component';
+import { ItemComponent } from './components/items/item.component';
 
 
 
 @NgModule({
   declarations: [
     CategoryComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    ItemComponent,
+    ItemFormComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
     SharedModule,
+    CoreModule,
     FormsModule,
     RouterModule,
     HttpClientModule
