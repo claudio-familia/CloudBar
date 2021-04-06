@@ -1,0 +1,15 @@
+.sale-orders {
+    height: 100%;
+    display: flex;
+    padding: 25px;
+    table {
+        width: 100%;
+    }
+    .bottom-buttons {
+        display: flex;
+        justify-content: space-around;
+        mat-card {
+            width: 250px;
+        }
+    }
+}

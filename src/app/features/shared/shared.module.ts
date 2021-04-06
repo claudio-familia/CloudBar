@@ -7,6 +7,7 @@ import { CardComponent } from './card/card.component';
 import { RouterModule } from "@angular/router";
 import { DynamictableComponent } from "./dynamictable/dynamictable.component";
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { CardSelectorItemComponent } from "./card-selector-item/card-selector-item.component";
 
 const maskConfig: Partial<IConfig> = {
     validation: false,
@@ -20,10 +21,12 @@ const maskConfig: Partial<IConfig> = {
         RouterModule,
         NgxMaskModule.forRoot(maskConfig),
     ],
-    declarations: [DynamicformComponent, CardComponent, DynamictableComponent],
+    declarations: [DynamicformComponent, CardComponent, DynamictableComponent, CardSelectorItemComponent],
     exports: [
         DynamicformComponent,
         CardComponent,
-        DynamictableComponent]
+        DynamictableComponent,
+        CardSelectorItemComponent
+    ]
 })
 export class SharedModule { }
