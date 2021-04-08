@@ -73,7 +73,7 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
         ...data,
       }
       if(this.selectedImage && this.image){
-        await this._fireBaseService.saveFileToStorage(`${this.categoryId}`, this.selectedImage)
+        await this._fireBaseService.saveFileToStorage(`category-${this.categoryId}`, this.selectedImage)
         .then((fileUploaded) => {
           category.imgUrl = fileUploaded;
         });
@@ -92,7 +92,7 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
   private createCategory(data: any) {
     this._categoryService.create(data).subscribe(
       res => {
-        this._fireBaseService.saveFileToStorage(`${res['id']}`, this.selectedImage).then((fileUploaded) => {
+        this._fireBaseService.saveFileToStorage(`category-${res['id']}`, this.selectedImage).then((fileUploaded) => {
           res['imgUrl'] = fileUploaded;
           this._categoryService.update(res).subscribe(() => {
             this._alertService.ToasterNotification('Operación exitosa', 'Categoria creado correctamente', 'success');

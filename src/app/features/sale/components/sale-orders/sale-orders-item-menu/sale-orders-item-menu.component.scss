@@ -1,0 +1,22 @@
+mat-card {    
+    margin: 20px;
+
+    .form-input {
+        width: 100%;
+        font-size: 25px;
+        border-color: gray;
+        outline: none;
+        padding: 10px 30px;
+        border-radius: 50px;
+        color: gray;
+        margin-bottom: 5px;
+    }
+
+    mat-error {
+        padding: 0px 30px;
+    }
+
+    div.col-12 {
+        margin-bottom: 15px;
+    }
+}

@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AlertService } from "src/app/core/services/alert.service";
 import { BaseComponent } from "src/app/features/shared/base/base.component";
+import { Item } from "src/app/features/warehouse/models/item";
 import { SaleOrder, SaleOrderType } from "../../../models/sale";
 import { SaleOrderService } from "../../../services/sale.service";
 
@@ -12,6 +13,8 @@ import { SaleOrderService } from "../../../services/sale.service";
 })
 export class SalesOrderItemSearchComponent extends BaseComponent implements OnInit {
 
+    @Input() items: Item[];
+
     constructor(private _alertService: AlertService,
         private _saleOrderService: SaleOrderService,
         private _currentRoute: ActivatedRoute) {
@@ -19,5 +22,6 @@ export class SalesOrderItemSearchComponent extends BaseComponent implements OnIn
     }
 
     ngOnInit(): void {
+        console.log(this.items)
     }
 }

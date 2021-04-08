@@ -1,0 +1,24 @@
+@import '../../../../assets/scss/core/colors';
+
+mat-card {
+    height: 100%;
+    border-radius: 25px;
+    margin: 5px 0px;
+    cursor: pointer;
+
+    mat-card-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 16px;
+        h4 {
+            font-weight: bold;
+        }
+        div.pull-right {
+            color: $primary;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+}

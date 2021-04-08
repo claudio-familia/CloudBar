@@ -97,7 +97,7 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
       ...data,
     };
     if (this.selectedImage && this.image) {
-      await this._fireBaseService.saveFileToStorage(`${this.itemId}`, this.selectedImage)
+      await this._fireBaseService.saveFileToStorage(`item-${this.itemId}`, this.selectedImage)
         .then((fileUploaded) => {
           item.imgUrl = fileUploaded;
         });
@@ -113,7 +113,7 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
   private createItem(data: any) {
     this._itemService.create(data).subscribe(
       res => {
-        this._fireBaseService.saveFileToStorage(`${res['id']}`, this.selectedImage).then((fileUploaded) => {
+        this._fireBaseService.saveFileToStorage(`item-${res['id']}`, this.selectedImage).then((fileUploaded) => {
           res['imgUrl'] = fileUploaded;
           this._itemService.update(res).subscribe(() => {
             this._alertService.ToasterNotification('Operación exitosa', 'Articulo creado correctamente', 'success');

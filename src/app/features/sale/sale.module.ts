@@ -1,4 +1,6 @@
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { CoreModule } from "src/app/core/core.module";
 import { SharedModule } from "../shared/shared.module";
@@ -21,7 +23,9 @@ import { SalesOrderAddComponent } from "./components/sale-orders/sales-ordes-new
     imports: [
         RouterModule,
         CoreModule,
-        SharedModule
+        SharedModule,
+        BrowserModule,
+        ReactiveFormsModule
     ],
 })
 export class SaleModule { }

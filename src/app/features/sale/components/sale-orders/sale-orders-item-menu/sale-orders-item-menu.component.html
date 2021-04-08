@@ -1,1 +1,51 @@
-<p>Item menu works</p>
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>
+            <h2>Menu de productos disponibles</h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content [formGroup]="searchForm">
+        <div class="row">
+            <div class="col-12">
+                <input type="text"
+                       formControlName="search"
+                       placeholder="Digite el articulo o producto que desea buscar" 
+                       class="form-input">
+                <mat-error *ngIf="searchForm.get('search').getError('minlength')">Minimo 3 caracteres para realizar la busqueda</mat-error>
+                <p *ngIf="message != ''">{{message}}</p>
+            </div>            
+            <div class="col-12" *ngIf="itemsFound.length > 0">
+                <h3><b>Resultados encontrados {{itemsFound.length}}</b></h3>
+                <app-sales-orders-item-seach [items]="itemsFound"></app-sales-orders-item-seach>                
+            </div>
+        </div>
+        <div class="row" *ngIf="itemsFound.length == 0 && !showNotFoundMessage">
+            <div class="col-12">
+                <h3><b>Categorias</b></h3>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let category of categories">
+                        <app-business-card
+                            [title]="category.name"
+                            [img]="category.imgUrl">
+                        </app-business-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <h3><b>Populares</b></h3>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4" *ngFor="let item of items">
+                        <app-product-card
+                            [title]="item.name"
+                            [subtitle]="item.description"
+                            [price]="99999"
+                            [img]="item.imgUrl">
+                        </app-product-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,20 @@
+<mat-card class="mat-elevation-z5">
+    <img mat-card-image [src]="img" [alt]="title">
+    <mat-card-header>
+        <div class="row">
+            <div class="col-12">
+                <mat-card-title>
+                    <h4>{{title}}</h4>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <h5>{{subtitle}}</h5>
+                </mat-card-subtitle>
+            </div>
+            <div class="col-12">
+                <div class="pull-right">
+                    RD$ {{price}}
+                </div>
+            </div>            
+        </div>
+    </mat-card-header>
+</mat-card>
