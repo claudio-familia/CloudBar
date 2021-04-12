@@ -14,3 +14,8 @@ export const hasLogin = createSelector(
     getSecurityFeatureSelector,
     state => state.isLoggedIn
 );
+
+export const getCurrentPlace = createSelector(
+    getSecurityFeatureSelector,
+    state => state.currentPlace
+);

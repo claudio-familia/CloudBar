@@ -10,7 +10,8 @@ export interface State extends appState.AppState {
 
 const initState: SecurityState  = {
     currentUser: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    currentPlace: null
 }
 
 export const securityReducer = createReducer<SecurityState>(
@@ -19,6 +20,12 @@ export const securityReducer = createReducer<SecurityState>(
       return {
         ...state,
         currentUser: action.currentUser
+      };
+    }),
+    on(userActions.setCurrentPlace, (state, action): SecurityState => {
+      return {
+        ...state,
+        currentPlace: action.currentPlace
       };
     }),
     on(userActions.setWheterHasLoggedIn, (state, action): SecurityState => {

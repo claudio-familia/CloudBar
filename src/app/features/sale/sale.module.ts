@@ -2,7 +2,9 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
+import { StoreModule } from "@ngrx/store";
 import { CoreModule } from "src/app/core/core.module";
+import { FeatureStates } from "src/app/core/store/app.constant";
 import { SharedModule } from "../shared/shared.module";
 import { SalesOrderItemMenuComponent } from "./components/sale-orders/sale-orders-item-menu/sale-orders-item-menu.component";
 import { SalesOrderItemSearchComponent } from "./components/sale-orders/sale-orders-item-search/sale-orders-item-search.component";
@@ -10,6 +12,7 @@ import { SalesOrderItemViewComponent } from "./components/sale-orders/sale-order
 import { SalesOrderViewComponent } from "./components/sale-orders/sale-orders-view/sale-orders-view.component";
 import { SaleOrdersComponent } from "./components/sale-orders/sale-orders.component";
 import { SalesOrderAddComponent } from "./components/sale-orders/sales-ordes-new/sale-orders-new.component";
+import { saleReducer } from "./state/sale.reducer";
 
 @NgModule({
     declarations: [
@@ -25,7 +28,8 @@ import { SalesOrderAddComponent } from "./components/sale-orders/sales-ordes-new
         CoreModule,
         SharedModule,
         BrowserModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        StoreModule.forFeature(FeatureStates.sale, saleReducer)
     ],
 })
 export class SaleModule { }

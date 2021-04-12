@@ -1,14 +1,22 @@
 <div class="user-info" [matMenuTriggerFor]="beforeMenu" title="Menu de usuario">
-    <h3>Administrador</h3>
+    <div class="text-group">
+        <h3 *ngIf="user">
+            {{user.username}} <small *ngIf="place">({{place.name}})</small>
+        </h3>           
+    </div>
     <img src="../../../../../assets/images/navbar/profile-user.png" />
 </div>
 <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item>        
+    <button mat-menu-item>
         <mat-icon>manage_accounts</mat-icon>
-        <span>Información de usuario</span>  
+        <span>Información de usuario</span>
+    </button>
+    <button mat-menu-item (click)="changePlace()">
+        <mat-icon>store_front</mat-icon>
+        <span>Cambiar de lugar</span>
     </button>
     <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
-        <span>Cerrar session</span>        
+        <span>Cerrar session</span>
     </button>
 </mat-menu>

@@ -1,1 +1,21 @@
-<p>Item view works</p>
+<mat-card>
+    <div class="row" *ngIf="item">
+        <div class="col-4">
+            <img [src]="item.imgUrl" [alt]="item.name" />
+        </div>
+        <div class="col-8">
+            <h1>{{item.name}}</h1>
+            <br><br>
+            <p>{{item.description}}. <br><b>{{item.category?.name}}</b></p>
+            <div>
+                <span>RD$ {{item.price}}</span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="bottom-buttons">
+                <button mat-raised-button color="primary">Ordenar</button>
+                <button mat-raised-button color="warn">Remover</button>
+            </div>
+        </div>
+    </div>
+</mat-card>

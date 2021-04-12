@@ -8,10 +8,17 @@
     :hover {
         color: $secondary;
     }
-
-    h3 {
-        padding: 3px 5px;
+    .text-group {
+        
+        h3 {
+            padding: 3px 5px;
+            width: 100%;
+        }
+        h4{
+            display: inline;
+        }
     }
+
     img {
         width: 40px;
     }

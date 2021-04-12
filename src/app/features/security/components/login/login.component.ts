@@ -33,9 +33,9 @@ export class LoginComponent {
                 this._store.dispatch(userActions.setCurrentUser({currentUser: res}));
                 this._store.dispatch(userActions.setWheterHasLoggedIn({isLoggedIn: true}));
 
-                this._router.navigate(['/home']);
+                window.location.href = '/home';
             },
-            error => {                
+            error => {
                 switch(error.status){
                     case 401: 
                         this._alertService.ToasterNotification(this.errorTitle, 'Usuario o contraseña invalida', 'error');

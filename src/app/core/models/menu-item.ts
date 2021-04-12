@@ -10,14 +10,14 @@ export const MENU: MenuItem[] = [
         url: 'sale-orders',
         image: '../../../../assets/images/menu/shopping-cart.png'
     },
+    // {
+    //     title: 'Ordenes de compra',
+    //     url: 'purchase-orders',
+    //     image: '../../../../assets/images/menu/shopping-bag.png'
+    // },
     {
-        title: 'Ordenes de compra',
-        url: 'purchase-orders',
-        image: '../../../../assets/images/menu/shopping-bag.png'
-    },
-    {
-        title: 'Inventario',
-        url: 'stocks',
+        title: 'Articulos',
+        url: 'items',
         image: '../../../../assets/images/menu/warehouse.png'
     },
     {
@@ -30,11 +30,11 @@ export const MENU: MenuItem[] = [
         url: 'employees',
         image: '../../../../assets/images/menu/customer.png'
     },
-    {
-        title: 'Suplidores',
-        url: 'suppliers',
-        image: '../../../../assets/images/menu/hotel-supplier.png'
-    },
+    // {
+    //     title: 'Suplidores',
+    //     url: 'suppliers',
+    //     image: '../../../../assets/images/menu/hotel-supplier.png'
+    // },
     {
         title: 'Reports',
         url: 'reports',

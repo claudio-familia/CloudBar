@@ -25,14 +25,14 @@ export class BaseService<T> {
   }
 
   create(data: any){    
-    return this.http.post(this._apiUrl, data,{headers: this._headers});
+    return this.http.post<T>(this._apiUrl, data,{headers: this._headers});
   }
 
   update(data: any){
-    return this.http.put(this._apiUrl, data,{headers: this._headers});
+    return this.http.put<T>(this._apiUrl, data,{headers: this._headers});
   }
   
   delete(id: string){
-    return this.http.delete(`${this._apiUrl}/${id}`, {headers: this._headers});
+    return this.http.delete<T>(`${this._apiUrl}/${id}`, {headers: this._headers});
   }
 }
