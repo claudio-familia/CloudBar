@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { AppState } from 'src/app/core/store/app.state';
+import { Place } from 'src/app/features/general/models/place';
 import { PeopleService } from 'src/app/features/general/services/people.service';
+import { getCurrentPlace } from 'src/app/features/security/state/security.selector';
 import { BaseComponent } from 'src/app/features/shared/base/base.component';
 import { Client } from '../../../models/client';
 import { ClientService } from '../../../services/client.service';
@@ -21,16 +25,25 @@ export class ClientFormComponent extends BaseComponent implements OnInit {
   selectedClient: Client;
   people: any[] = [];
   peopleFiltered: any[] = [];
+  currentPlace$: any;
+  currentPlace: Place;
 
   constructor(private _alertService: AlertService,
     private _clientService: ClientService,
     private _peopleService: PeopleService,
     private _currentRoute: ActivatedRoute,
+    private _store: Store<AppState>,
     private _router: Router) {
     super(_alertService)
+    this.currentPlace$ = this._store.pipe(select(getCurrentPlace));
   }
 
   async ngOnInit(): Promise<void> {
+    this.currentPlace$.subscribe(
+      res => {
+        this.currentPlace = res;
+      }
+    )
     await this.getPeople();
     this._currentRoute.params.subscribe(async param => {
       this.clientId = param.id;
@@ -80,6 +93,7 @@ export class ClientFormComponent extends BaseComponent implements OnInit {
         }
       );
     } else {
+      data.placeId = this.currentPlace.id
       this._clientService.create(data).subscribe(
         res => {
           this._alertService.ToasterNotification('Operación exitosa', 'Cliente creado correctamente', 'success');

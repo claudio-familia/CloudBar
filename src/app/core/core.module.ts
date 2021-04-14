@@ -16,6 +16,7 @@ import { LoadingComponent } from './layout/loading/loading.component';
 import { StoreModule } from '@ngrx/store';
 import { FeatureStates } from './store/app.constant';
 import { appReducer } from './store/state/app.reducer';
+import { LongStoryShortPipe } from './pipes/long-text.pipe';
 
 
 
@@ -26,9 +27,10 @@ import { appReducer } from './store/state/app.reducer';
     SidebarComponent,
     UserInfoComponent,
     LoginLayoutComponent,
-    LoadingComponent
+    LoadingComponent,
+    LongStoryShortPipe
   ],
-  exports: [LayoutComponent, MaterialModule, LoginLayoutComponent, LoadingComponent],
+  exports: [LayoutComponent, MaterialModule, LoginLayoutComponent, LoadingComponent, LongStoryShortPipe],
   imports: [
     CommonModule,
     MaterialModule,

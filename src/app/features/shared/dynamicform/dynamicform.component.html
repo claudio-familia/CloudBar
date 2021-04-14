@@ -53,7 +53,9 @@
                     <mat-select-filter *ngIf="select.focused" [placeholder]="'Buscar'" [displayMember]="'name'"
                         [array]="item.valueArray" (filteredReturn)="item.valueFiltered=$event"></mat-select-filter>
                     <mat-option *ngFor="let option of item.valueFiltered" [value]="option.id">
-                        {{option.name}}
+                        {{option.identification ? option.identification : ''}} 
+                        {{option.name}} 
+                        {{option.lastName ? option.lastName : ''}}
                     </mat-option>
                 </mat-select>
                 <mat-error *ngIf="this.formGroup.get(item.name).getError('required')">{{ item.validationMessage ?
