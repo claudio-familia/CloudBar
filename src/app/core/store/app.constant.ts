@@ -3,4 +3,5 @@ export const FeatureStates = {
     general: 'general',
     warehouse: 'warehouse',
     sale: 'sales',
+    app: 'core',
 }

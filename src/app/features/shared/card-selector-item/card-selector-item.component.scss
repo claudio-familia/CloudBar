@@ -4,6 +4,15 @@
     width: 100% !important;
 }
 
+mat-card.selected {
+    background-color: $primary;
+    mat-card-content {
+        h1 {
+            color: white;
+        }
+    }
+}
+
 mat-card {
     margin: 20px;
     height: 70%;

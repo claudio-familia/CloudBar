@@ -22,7 +22,7 @@ export const MENU: MenuItem[] = [
     },
     {
         title: 'Clientes',
-        url: 'customers',
+        url: 'clients',
         image: '../../../../assets/images/menu/target.png'
     },
     {
@@ -35,11 +35,11 @@ export const MENU: MenuItem[] = [
     //     url: 'suppliers',
     //     image: '../../../../assets/images/menu/hotel-supplier.png'
     // },
-    {
-        title: 'Reports',
-        url: 'reports',
-        image: '../../../../assets/images/menu/profit-report.png'
-    }
+    // {
+    //     title: 'Reports',
+    //     url: 'reports',
+    //     image: '../../../../assets/images/menu/profit-report.png'
+    // }
 ];
 export const SETTINGMENU: MenuItem[] = [
     {

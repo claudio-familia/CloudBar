@@ -19,7 +19,7 @@ import * as saleActions from '../../state/actions/sale.actions';
 export class SaleOrdersComponent extends BaseComponent implements OnChanges, OnInit {
 
 
-    displayedColumns: string[] = ['id', 'number', 'type', 'createdBy', 'options'];
+    displayedColumns: string[] = ['number', 'type', 'total', 'client', 'status', 'options'];
     dataSource: MatTableDataSource<SaleOrder>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -43,13 +43,26 @@ export class SaleOrdersComponent extends BaseComponent implements OnChanges, OnI
             res => {                
                 this.orders = res;
                 this.dataSource = new MatTableDataSource(this.orders);
-            }
+            },
+            err => this.getHttpErrorResponse(err)
         )        
     }
 
     viewOrder(saleOrder: SaleOrder){
         this._store.dispatch(saleActions.setCurrentSaleOrder({currentSaleOrder: saleOrder}));
         this._router.navigate(['/sale-orders/view/', saleOrder.id]);
+    }
+
+    deleteOrder(saleOrder: SaleOrder){
+        this._alertService.ModalNotification('Aviso', '¿Está seguro que desea eliminar la orden?', 'question')
+        .then(res => {
+            if(res.isConfirmed) {
+                this._saleOrderService.delete(saleOrder.id.toString()).subscribe(res => {
+                    this._alertService.ToasterNotification('Exitoso', 'Orden de venta eliminada correctamente', 'success')
+                    this.getSaleOrders();
+                }, err => this.getHttpErrorResponse(err));
+            }
+        })
     }
 
     ngOnChanges() {

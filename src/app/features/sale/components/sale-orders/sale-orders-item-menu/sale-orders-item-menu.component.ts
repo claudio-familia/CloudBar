@@ -47,6 +47,11 @@ export class SalesOrderItemMenuComponent extends BaseComponent implements OnInit
         )
     }
 
+    selectCategory(categoryName: string){ 
+        console.log(categoryName)
+        this.searchProducts(categoryName);
+    }
+
     searchProducts(searchCriteria: string){
         this.showNotFoundMessage = false;
         this.message = '';
@@ -60,8 +65,7 @@ export class SalesOrderItemMenuComponent extends BaseComponent implements OnInit
             res => {
                 this.itemsFound = res;
             },
-            err => {
-                console.log(err.error)
+            err => {                
                 if(err.status){
                     this.showNotFoundMessage = true;
                     this.message = err.error
@@ -74,7 +78,8 @@ export class SalesOrderItemMenuComponent extends BaseComponent implements OnInit
         this._categoryService.get().subscribe(
             res => {
                 this.categories = res;
-            }
+            },
+            err => this.getHttpErrorResponse(err)
         )
     }
 
@@ -82,7 +87,8 @@ export class SalesOrderItemMenuComponent extends BaseComponent implements OnInit
         this._itemService.get().subscribe(
             res => {
                 this.items = res;                
-            }
+            },
+            err => this.getHttpErrorResponse(err)
         )
     }
 }

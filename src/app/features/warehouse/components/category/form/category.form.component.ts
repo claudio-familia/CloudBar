@@ -68,6 +68,7 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
 
   async createUpdateData(data: any) {    
     if (this.categoryId) {
+      if(data.imgUrl == '') delete data.imgUrl;
       const category: Category = {
         ...this.selectedCategory,
         ...data,

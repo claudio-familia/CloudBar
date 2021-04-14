@@ -8,13 +8,14 @@
             <br><br>
             <p>{{item.description}}. <br><b>{{item.category?.name}}</b></p>
             <div>
+                <input *ngIf="currentOrder" type="number" placeholder="Cantidad" [(ngModel)]="quantity" name="quantity" />
                 <span>RD$ {{item.price}}</span>
             </div>
         </div>
         <div class="col-12">
             <div class="bottom-buttons">
-                <button mat-raised-button color="primary">Ordenar</button>
-                <button mat-raised-button color="warn">Remover</button>
+                <button mat-raised-button color="primary" (click)="orderProduct()" *ngIf="currentOrder">Ordenar</button>
+                <button mat-raised-button color="warn" *ngIf="currentOrder">Remover</button>
             </div>
         </div>
     </div>

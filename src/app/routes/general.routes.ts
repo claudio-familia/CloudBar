@@ -1,4 +1,6 @@
 import { Routes } from "@angular/router";
+import { EmployeeComponent } from "../features/general/components/employee/employee.component";
+import { EmployeeFormComponent } from "../features/general/components/employee/form/employee.form.component";
 import { HomeComponent } from "../features/general/components/home/home.component";
 import { ParameterFormComponent } from "../features/general/components/parameter/form/parameter.form.component";
 import { ParameterComponent } from "../features/general/components/parameter/parameter.component";
@@ -23,6 +25,10 @@ const GENERAL_ROUTES :Routes = [
     { path: 'places', component: PlaceComponent, canActivate: [AuthGuard] },
     { path: 'places/create', component: PlaceFormComponent, canActivate: [AuthGuard] },
     { path: 'places/edit/:id', component: PlaceFormComponent, canActivate: [AuthGuard] },
+
+    { path: 'employees', component: EmployeeComponent, canActivate: [AuthGuard, PlaceGuard] },
+    { path: 'employees/edit/:id', component: EmployeeFormComponent, canActivate: [AuthGuard, PlaceGuard] },
+    { path: 'employees/create', component: EmployeeFormComponent, canActivate: [AuthGuard, PlaceGuard] },
 ]
 
 export default GENERAL_ROUTES;

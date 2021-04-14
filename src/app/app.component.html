@@ -1,10 +1,13 @@
-<div *ngIf="hasLoggin">
-    <app-layout>
-        <router-outlet></router-outlet>
-    </app-layout>
-</div>
-<div *ngIf="!hasLoggin">
-    <app-layout-login >
-        <router-outlet></router-outlet>
-    </app-layout-login>
+<div [ngClass]="{'passive' : isLoading}">
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div *ngIf="hasLoggin">
+        <app-layout>
+            <router-outlet></router-outlet>
+        </app-layout>
+    </div>
+    <div *ngIf="!hasLoggin">
+        <app-layout-login >
+            <router-outlet></router-outlet>
+        </app-layout-login>
+    </div>
 </div>

@@ -3,6 +3,8 @@ import { BaseEntity } from "src/app/core/models/base.model";
 export class SaleOrder extends BaseEntity {
     userId?: number;
     placeId?: number;
+    clientId?: number;
+    employeeId?: number;
     number: string;
     type: string;
     total: number;

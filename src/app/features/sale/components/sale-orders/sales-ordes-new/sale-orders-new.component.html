@@ -1,16 +1,51 @@
 <div class="sale-orders">
-    <div class="col-6">
-        <app-card-selector-item 
-            (click)="stepToGoInHere(1)"
-            title="Consumir aqui" 
-            img="../../../../assets/images/orders/wine-bottle.png">
-        </app-card-selector-item>
-    </div>
-    <div class="col-6">
-        <app-card-selector-item 
-            (click)="stepToGoInHere(2)"
-            title="Para llevar" 
-            img="../../../../assets/images/orders/clock.png">
-        </app-card-selector-item>
-    </div>
+    <mat-card>
+        <mat-card-content>
+
+            <div class="row">
+                <div class="col-12">
+                    <label for="">Cliente:</label>
+                    <mat-form-field class="w-100 input-form">
+                        <mat-select name="client" required="required" #select
+                            placeholder="Seleccione el cliente con el que va a trabajar" [(ngModel)]="selectedClient">
+                            <mat-select-filter *ngIf="select.focused"
+                                placeholder="'Seleccione el cliente con el que va a trabajar'"
+                                [displayMember]="'person.name'" [array]="clients"
+                                (filteredReturn)="clientsFiltered=$event">
+                            </mat-select-filter>
+                            <mat-option *ngFor="let option of clientsFiltered" [value]="option">
+                                {{option.person.identification}} - {{option.person.name}} {{option.person.lastName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
+                    <label for="">Empleado:</label>
+                    <mat-form-field class="w-100 input-form">
+                        <mat-select name="employee" required="required" #select
+                            placeholder="Seleccione el empleado con el que va a trabajar"
+                            [(ngModel)]="selectedEmployee">
+                            <mat-select-filter *ngIf="select.focused"
+                                placeholder="'Seleccione el empleado con el que va a trabajar'"
+                                [displayMember]="'person.name'" [array]="employees"
+                                (filteredReturn)="employeesFiltered=$event">
+                            </mat-select-filter>
+                            <mat-option *ngFor="let option of employeesFiltered" [value]="option">
+                                {{option.person.identification}} - {{option.person.name}} {{option.person.lastName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6" *ngFor="let ordertype of orderTypes">
+                    <app-card-selector-item [title]="ordertype.title" [img]="ordertype.img"
+                        [isSelected]="ordertype.isSelected" (click)="selectType(ordertype)">
+                    </app-card-selector-item>
+                </div>
+            </div>
+            <mat-card-actions class="pull-right">
+                <button mat-raised-button color="primary" (click)="createOrder()">Crear nueva orden</button>
+                <button mat-raised-button color="accent" (click)="close()">Regresar</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
 </div>

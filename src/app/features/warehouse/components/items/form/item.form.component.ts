@@ -92,16 +92,17 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
   }
 
   private async updatedItem(data: any) {
+    if(data.imgUrl == '') delete data.imgUrl;
     const item: Item = {
       ...this.selectedItem,
       ...data,
     };
-    if (this.selectedImage && this.image) {
+    if (this.selectedImage && this.image) {      
       await this._fireBaseService.saveFileToStorage(`item-${this.itemId}`, this.selectedImage)
         .then((fileUploaded) => {
           item.imgUrl = fileUploaded;
         });
-    }
+    }    
     this._itemService.update(item).subscribe(
       res => {
         this._alertService.ToasterNotification('Operación exitosa', 'Articulo actalizado correctamente', 'success');

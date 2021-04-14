@@ -21,7 +21,6 @@ export class SalesOrderItemSearchComponent extends BaseComponent implements OnIn
         super(_alertService)
     }
 
-    ngOnInit(): void {
-        console.log(this.items)
+    ngOnInit(): void {        
     }
 }
