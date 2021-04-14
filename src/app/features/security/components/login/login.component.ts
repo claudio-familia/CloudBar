@@ -28,7 +28,7 @@ export class LoginComponent {
         response.subscribe(
             res => {
                 localStorage.setItem('api-token', res.token);
-                localStorage.setItem('app-user', res.username);
+                localStorage.setItem('app-user', res.username);                
 
                 this._store.dispatch(userActions.setCurrentUser({currentUser: res}));
                 this._store.dispatch(userActions.setWheterHasLoggedIn({isLoggedIn: true}));
