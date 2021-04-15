@@ -48,8 +48,8 @@
                   </p>
                 <br>
                 <div class="bottom-buttons">
-                    <button routerLink="/sale-orders/item/menu" mat-raised-button color="primary">Ordenar</button>
-                    <button mat-stroked-button color="primary" (click)="askForInvoice()">Pedir cuenta</button>
+                    <button *ngIf="saleOrder.statusId != 4" routerLink="/sale-orders/item/menu" mat-raised-button color="primary">Ordenar</button>
+                    <button mat-stroked-button color="primary" (click)="askForInvoice()">{{saleOrder.statusId == 4 ? 'Ver factura' : 'Pedir cuenta'}}</button>
                 </div>
             </mat-card-content>
         </mat-card>

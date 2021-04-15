@@ -5,6 +5,7 @@ import { AppState } from "src/app/core/store/app.state";
 import { BaseComponent } from "src/app/features/shared/base/base.component";
 import { Invoice } from "../../models/invoice";
 import { SaleOrder } from "../../models/sale";
+import { SaleOrderService } from "../../services/sale.service";
 import { getCurrenSaleOrder } from "../../state/sale.selector";
 
 @Component({
@@ -21,6 +22,7 @@ export class InvoiceComponent extends BaseComponent implements OnInit {
     invoice: Invoice;
 
     constructor(private _alertService: AlertService,
+                private _saleOrderService: SaleOrderService,
                 private _store: Store<AppState>){
         super(_alertService)
         this.currentOrder$ = this._store.pipe(select(getCurrenSaleOrder))
@@ -29,6 +31,12 @@ export class InvoiceComponent extends BaseComponent implements OnInit {
     ngOnInit(): void {
         if(!this.invoiceId){
             this.getSaleOrderData();
+        }else{
+            this._saleOrderService.getInvoiceByOrderId(this.invoiceId.toString()).subscribe(
+                res => {
+                    this.invoice = res;
+                }
+            )
         }
     }
 
@@ -36,8 +44,7 @@ export class InvoiceComponent extends BaseComponent implements OnInit {
     private getSaleOrderData() {
         this.currentOrder$.subscribe(
             res => {
-                this.saleOrder = res;
-                console.log(this.saleOrder)
+                this.saleOrder = res;                
             }
         );
     }

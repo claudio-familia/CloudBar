@@ -3,7 +3,7 @@
     <ng-template [ngTemplateOutlet]="invoiceRef"></ng-template>
 </mat-dialog-content>
 <mat-dialog-actions align="end" *ngIf="isDialog">
-    <button mat-raised-button color="primary" routerLink="/sale-orders/invoice" [mat-dialog-close]="true" cdkFocusInitial *ngIf="saleOrder">Pagar factura</button>
+    <button mat-raised-button color="primary" routerLink="/sale-orders/invoice" [mat-dialog-close]="true" cdkFocusInitial *ngIf="saleOrder && saleOrder.statusId != 4">Pagar factura</button>
     <button mat-raised-button mat-dialog-close>Cerrar</button>
 </mat-dialog-actions>
 

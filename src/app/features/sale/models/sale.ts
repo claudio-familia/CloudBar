@@ -5,6 +5,7 @@ export class SaleOrder extends BaseEntity {
     placeId?: number;
     clientId?: number;
     employeeId?: number;
+    statusId?: number;
     number: string;
     type: string;
     total: number;

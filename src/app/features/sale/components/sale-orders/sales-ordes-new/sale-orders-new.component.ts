@@ -1,17 +1,20 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
+import { RoleEnum } from "src/app/core/models/roles.enum";
 import { AlertService } from "src/app/core/services/alert.service";
 import { AppState } from "src/app/core/store/app.state";
 import { Place } from "src/app/features/general/models/place";
 import { EmployeeService } from "src/app/features/general/services/employee.service";
-import { getCurrentPlace } from "src/app/features/security/state/security.selector";
+import { User } from "src/app/features/security/models/user";
+import { getCurrentPlace, getCurrentUser } from "src/app/features/security/state/security.selector";
 import { BaseComponent } from "src/app/features/shared/base/base.component";
 import { Client } from "../../../models/client";
 import { SaleOrder, SaleOrderType } from "../../../models/sale";
 import { ClientService } from "../../../services/client.service";
 import { SaleOrderService } from "../../../services/sale.service";
 import * as saleActions from '../../../state/actions/sale.actions';
+import jwt_decode from 'jwt-decode';
 
 @Component({
     selector: 'app-sales-orders-wizard',
@@ -29,7 +32,10 @@ export class SalesOrderAddComponent extends BaseComponent implements OnInit {
     employeesFiltered: Client[] = [];
     orderTypes: any[] = [];
     currentPlace$: any;
+    currentUser$: any;
     currentplace: Place;
+    isClient: boolean = false;
+    currentUser: User;
 
     constructor(private _alertService: AlertService,
                 private _saleOrderService: SaleOrderService,
@@ -40,9 +46,11 @@ export class SalesOrderAddComponent extends BaseComponent implements OnInit {
                 private _router: Router){
         super(_alertService)
         this.currentPlace$ = this._store.pipe(select(getCurrentPlace))
+        this.currentUser$ = this._store.pipe(select(getCurrentUser))
     }
 
     ngOnInit(): void {
+        this.getCurrentUserInfo()
         this.saleOrder = new SaleOrder();
         this.orderTypes = [
             {
@@ -61,6 +69,21 @@ export class SalesOrderAddComponent extends BaseComponent implements OnInit {
         this.currentPlace$.subscribe(
             res => {
                 this.currentplace = res;
+            }
+        )
+    }
+
+    getCurrentUserInfo(){
+        this.currentUser$.subscribe(
+            res => {
+                this.currentUser = res;
+                const tokenData = jwt_decode(res.token);                
+                const roleId = tokenData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+                this.isClient = roleId == RoleEnum.Client;
+                if(this.isClient){
+                    this.selectedClient = new Client();
+                    this.selectedClient.id = tokenData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid']                
+                }
             }
         )
     }
@@ -113,10 +136,11 @@ export class SalesOrderAddComponent extends BaseComponent implements OnInit {
             this._alertService.ToasterNotification('Aviso', 'Debe seleccionar el cliente de orden para continuar', 'info');
             return false;
         }
-        if(!this.selectedEmployee) {
+        if(!this.selectedEmployee && !this.isClient) {
             this._alertService.ToasterNotification('Aviso', 'Debe seleccionar el empleado de orden para continuar', 'info');
             return false;
         }
+
         return true;
     }
 
@@ -129,7 +153,7 @@ export class SalesOrderAddComponent extends BaseComponent implements OnInit {
         const orderType = this.getSelectedType()
         this.saleOrder.type = orderType.title == 'Consumir aqui' ? SaleOrderType.GetInHere : SaleOrderType.ToGo;
         this.saleOrder.clientId = this.selectedClient.id;
-        this.saleOrder.employeeId = this.selectedEmployee.id;
+        this.saleOrder.employeeId = this.selectedEmployee ? this.selectedEmployee.id : null;
         this.saleOrder.placeId = this.currentplace.id;
         this._saleOrderService.create(this.saleOrder).subscribe(
             res => {

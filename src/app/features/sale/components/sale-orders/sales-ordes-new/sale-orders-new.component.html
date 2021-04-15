@@ -3,7 +3,7 @@
         <mat-card-content>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" *ngIf="!isClient">
                     <label for="">Cliente:</label>
                     <mat-form-field class="w-100 input-form">
                         <mat-select name="client" required="required" #select
@@ -19,7 +19,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-12">
+                <div class="col-12"  *ngIf="!isClient">
                     <label for="">Empleado:</label>
                     <mat-form-field class="w-100 input-form">
                         <mat-select name="employee" required="required" #select
