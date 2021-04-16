@@ -7,6 +7,7 @@ import { Invoice } from "../../models/invoice";
 import { SaleOrder } from "../../models/sale";
 import { SaleOrderService } from "../../services/sale.service";
 import { getCurrenSaleOrder } from "../../state/sale.selector";
+import * as printJS from 'print-js';
 
 @Component({
     selector: 'app-invoice',
@@ -38,6 +39,14 @@ export class InvoiceComponent extends BaseComponent implements OnInit {
                 }
             )
         }
+    }
+
+    print(){
+        printJS({
+            printable: 'printJS-form',
+            type:  'html',
+            css: '../../../../../assets/css/boostrap-4.1.1.min.css'
+        })
     }
 
 
