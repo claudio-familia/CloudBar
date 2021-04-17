@@ -20,5 +20,6 @@ export const environment = {
     category: 'categories',
     item: 'items',
     sale: 'sales',
+    client: 'clients',
   }
 };
