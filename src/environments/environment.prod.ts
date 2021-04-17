@@ -14,6 +14,7 @@ export const environment = {
   urls: {
     person: 'people',
     parameter: 'parameters',
+    employee: 'employees',
     place: 'places',
     user: 'users',
     role: 'roles',
