@@ -1,5 +1,11 @@
-.sale-orders {
-    height: 100%;
+.sale-orders {    
     display: flex;
-    padding: 25px;
+    padding: 10px;    
+    mat-card {
+        width: 100% !important;
+        padding: 10px;
+        label {
+            font-weight: bold;
+        }
+    }
 }

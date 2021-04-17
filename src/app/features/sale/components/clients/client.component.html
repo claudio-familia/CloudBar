@@ -1,0 +1,18 @@
+<app-card title="Clientes" subtitle="Inicio / Clientes">
+    <div class="row">
+        <div class="col-12">
+            <div class="pull-right">
+                <a mat-raised-button color="primary" routerLink="/clients/create">
+                    Nuevo cliente <mat-icon>person_add</mat-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <app-dynamictable [tableSettings]="tableSettings"                               
+                              [datatable]="clients" 
+                              [hasOptions]="true" 
+                              (element)="editDelete($event)">
+            </app-dynamictable>
+        </div>
+    </div>
+</app-card>

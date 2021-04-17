@@ -1,0 +1,78 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h1>Proceso de facturación de ordenes de venta</h1>
+        </mat-card-title>
+        <mat-card-subtitle>Inicio / Ordenes de ventas / Facturación</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-12">
+                <label>Factura con comprobante fiscal?:</label>
+                <br>
+                <mat-button-toggle-group #groupIdentification="matButtonToggleGroup">
+                    <mat-button-toggle [value]="item.value" (click)="selectIdentification(item.value)"
+                        *ngFor="let item of identificationTypes">
+                        <mat-icon>{{item.icon}}</mat-icon>
+                        {{item.title}}
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="col-12" *ngIf="groupIdentification.value == 'Tax receipt'">
+                <label>Inscripción en el Registro Nacional de Contribuyentes (RNC)</label><br>
+                <mat-form-field appearance="legacy" [hideRequiredMarker]="false" [floatLabel]="false"
+                    class="w-100 input-form">
+                    <input matInput type="text" name="rnc" [(ngModel)]="rnc" placeholder="Digite el RNC"
+                        required="true">
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <label>Modo de pago:</label>
+                <br>
+                <mat-button-toggle-group #groupPayment="matButtonToggleGroup">
+                    <mat-button-toggle [value]="item.value" (click)="selectPayment(item.value)"
+                        *ngFor="let item of paymentTypes">
+                        <mat-icon>{{item.icon}}</mat-icon>
+                        {{item.title}}
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="col-12" *ngIf="groupPayment.value == 'Credit or Debit Card'">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Tarjeta</label><br>
+                        <mat-form-field appearance="legacy" [hideRequiredMarker]="false" [floatLabel]="false"
+                            class="w-100 input-form">
+                            <input matInput type="text" name="paymentCard" [(ngModel)]="paymentCard.digits"
+                                placeholder="Digite los ultimos 4 digitos de la tarjeta" maxlength="4" minlength="4"
+                                required="true">                           
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <label>Banco</label><br>
+                        <mat-form-field appearance="legacy" [hideRequiredMarker]="false" [floatLabel]="false"
+                            class="w-100 input-form">
+                            <input matInput type="text" name="bank" [(ngModel)]="paymentCard.bank"
+                                placeholder="Digite el nombre del banco" required="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <label>Fecha de vencimiento</label><br>
+                        <mat-form-field appearance="legacy" [hideRequiredMarker]="false" [floatLabel]="false"
+                            class="w-100 input-form">
+                            <input matInput type="date" name="dueDate" [(ngModel)]="paymentCard.dueDate"
+                                placeholder="Seleccione la fecha de vencimiento" required="true">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12">
+                <mat-card-actions class="pull-right">
+                    <button mat-raised-button color="primary" (click)="createInvoice()">Facturar</button>
+                    <button mat-raised-button color="accent" (click)="close()">Regresar</button>
+                </mat-card-actions>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -27,6 +27,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let category of categories">
                         <app-business-card
+                            (click)="selectCategory(category.name)"
                             [title]="category.name"
                             [img]="category.imgUrl">
                         </app-business-card>
@@ -38,6 +39,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4" *ngFor="let item of items">
                         <app-product-card
+                            [routerLink]="'/sale-orders/item/view/'+item.id"
                             [title]="item.name"
                             [subtitle]="item.description"
                             [price]="99999"

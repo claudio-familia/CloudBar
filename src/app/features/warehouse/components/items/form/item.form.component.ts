@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { AppState } from 'src/app/core/store/app.state';
+import { Place } from 'src/app/features/general/models/place';
+import { getCurrentPlace } from 'src/app/features/security/state/security.selector';
 import { BaseComponent } from 'src/app/features/shared/base/base.component';
 import { Category } from '../../../models/category';
 import { Item } from '../../../models/item';
@@ -25,17 +29,26 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
   selectedImage: any;
   categories: Category[] = [];
   categoriesFiltered: Category[] = [];
+  currentPlace$: any;
+  currentPlace: Place;
 
   constructor(private _alertService: AlertService,
     private _itemService: ItemService,
     private _categoryService: CategoryService,
     private _fireBaseService: FirebaseService,
     private _currentRoute: ActivatedRoute,
+    private _store: Store<AppState>,
     private _router: Router) {
     super(_alertService)
+    this.currentPlace$ = this._store.pipe(select(getCurrentPlace));
   }
 
   async ngOnInit(): Promise<void> {
+    this.currentPlace$.subscribe(
+      res => {
+        this.currentPlace = res;
+      }
+    )
     await this.getCategories();
     this._currentRoute.params.subscribe(async param => {
       this.itemId = param.id;
@@ -92,16 +105,17 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
   }
 
   private async updatedItem(data: any) {
+    if(data.imgUrl == '') delete data.imgUrl;
     const item: Item = {
       ...this.selectedItem,
       ...data,
     };
-    if (this.selectedImage && this.image) {
+    if (this.selectedImage && this.image) {      
       await this._fireBaseService.saveFileToStorage(`item-${this.itemId}`, this.selectedImage)
         .then((fileUploaded) => {
           item.imgUrl = fileUploaded;
         });
-    }
+    }    
     this._itemService.update(item).subscribe(
       res => {
         this._alertService.ToasterNotification('Operación exitosa', 'Articulo actalizado correctamente', 'success');
@@ -111,6 +125,7 @@ export class ItemFormComponent extends BaseComponent implements OnInit {
   }
 
   private createItem(data: any) {
+    data.placeId = this.currentPlace.id;
     this._itemService.create(data).subscribe(
       res => {
         this._fireBaseService.saveFileToStorage(`item-${res['id']}`, this.selectedImage).then((fileUploaded) => {

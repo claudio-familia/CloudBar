@@ -12,6 +12,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { environment } from 'src/environments/environment';
+import { LoadingComponent } from './layout/loading/loading.component';
+import { StoreModule } from '@ngrx/store';
+import { FeatureStates } from './store/app.constant';
+import { appReducer } from './store/state/app.reducer';
+import { LongStoryShortPipe } from './pipes/long-text.pipe';
 
 
 
@@ -21,9 +26,11 @@ import { environment } from 'src/environments/environment';
     HeaderComponent, 
     SidebarComponent,
     UserInfoComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    LoadingComponent,
+    LongStoryShortPipe
   ],
-  exports: [LayoutComponent, MaterialModule, LoginLayoutComponent],
+  exports: [LayoutComponent, MaterialModule, LoginLayoutComponent, LoadingComponent, LongStoryShortPipe],
   imports: [
     CommonModule,
     MaterialModule,
@@ -31,6 +38,7 @@ import { environment } from 'src/environments/environment';
     RouterModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    StoreModule.forFeature(FeatureStates.app, appReducer),
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'increasing',

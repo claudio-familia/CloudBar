@@ -23,8 +23,8 @@ export class ItemComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableSettings = this.setTable(
-      ['id', 'name', 'description', 'stock', 'price'],
-      ['#', 'Nombre', 'Descripción', 'Disponible', 'Precio']);
+      ['category', 'name', 'description', 'stock', 'price'],
+      ['Categoria', 'Nombre', 'Descripción', 'Disponible', 'Precio']);
     this.getData();
   }
 

@@ -1,0 +1,118 @@
+<h2 mat-dialog-title>{{ saleOrder ? 'Factura (Preview)' : 'Factura consumidor final'}}</h2>
+<mat-dialog-content class="mat-typography" *ngIf="isDialog">
+    <ng-template [ngTemplateOutlet]="invoiceRef"></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="isDialog">
+    <button mat-raised-button color="primary" routerLink="/sale-orders/invoice" [mat-dialog-close]="true" cdkFocusInitial *ngIf="saleOrder && saleOrder.statusId != 4">Pagar factura</button>
+    <button mat-raised-button color="warn" (click)="print()">Imprimir</button>
+    <button mat-raised-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
+
+<ng-template  *ngIf="!isDialog" [ngTemplateOutlet]="invoiceRef"></ng-template>
+
+<ng-template #invoiceRef>
+    <div class="container" id="printJS-form">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="row p-5">
+                            <div class="col-md-6">
+                                <img src="../../../../../assets/images/orders/Logo Invoice.png">                            
+                            </div>
+    
+                            <div class="col-md-6 text-right">
+                                <p class="font-weight-bold mb-1" *ngIf="invoice">Factura #550</p>
+                                <p class="text-muted">Fecha: {{saleOrder.createdAt | date}}</p>
+                            </div>
+                        </div>
+    
+                        <hr class="my-5">
+    
+                        <div class="row pb-5 p-5">
+                            <div class="col-md-6">
+                                <p class="font-weight-bold mb-4">Información del cliente</p>
+                                <p class="mb-1">{{saleOrder.client.person.name}} {{saleOrder.client.person.lastName}}</p>                                
+                                <p class="mb-1" *ngIf="saleOrder.client.person.address">{{saleOrder.client.person.address}}</p>
+                                <p class="mb-1" *ngIf="saleOrder.client.person.country">{{saleOrder.client.person.country}}</p>
+                                <p class="mb-1" *ngIf="saleOrder.client.person.phone">{{saleOrder.client.person.phone}}</p>
+                            </div>
+    
+                            <div class="col-md-6 text-right" *ngIf="invoice">
+                                <p class="font-weight-bold mb-4">Detalles del pago</p>
+                                <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
+                                <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
+                                <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
+                                <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
+                            </div>                           
+                        </div>
+    
+                        <div class="row p-5">
+                            <div class="col-12">
+                                <p class="text-center">
+                                    <b>Todos los montos presentados en esta factura son en pesos dominicanos RD$</b>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold text-center">Articulo</th>                                            
+                                            <th class="border-0 text-uppercase small font-weight-bold text-right">Cantidad</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold text-right">Precio unitario</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold text-right">Precio total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="saleOrder">
+                                        <tr *ngFor="let line of saleOrder.lines">
+                                            <td>{{line.id}}</td>
+                                            <td>{{line.item.name}}</td>
+                                            <td class="text-right">{{line.quantity}}</td>
+                                            <td class="text-right">{{line.price | number}}</td>
+                                            <td class="text-right">{{line.quantity*line.price | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody *ngIf="invoice">
+                                        <tr *ngFor="let line of invoice.lines">
+                                            <td>1</td>
+                                            <td>Software</td>
+                                            <td class="text-right">21</td>
+                                            <td class="text-right">$321</td>
+                                            <td class="text-right">$3452</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+    
+                        <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">Total</div>
+                                <div class="h2 font-weight-light">{{saleOrder.total * 1.28 | number}}</div>
+                            </div>              
+    
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">Total impuestos</div>
+                                <div class="h2 font-weight-light">{{saleOrder.total * 0.28 | number}}</div>
+                            </div>
+                            
+                            <div class="py-3 px-5 text-right">
+                                <div class="mb-2">SubTotal</div>
+                                <div class="h2 font-weight-light">{{saleOrder.total | number}}</div>
+                            </div>
+                        </div>
+                        <div class="bg-dark text-white">
+                            <p class="text-center">
+                                Los impuestos son una suma del ITBIS (18%) mas la propina por ley de un (10%).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="!saleOrder && !invoice">
+            <b>Factura no disponible</b>
+        </p>
+    </div>
+</ng-template>

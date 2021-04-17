@@ -12,6 +12,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { JwtModule } from '@auth0/angular-jwt'
 import { WarehouseModule } from './features/warehouse/warehouse.module';
 import { SaleModule } from './features/sale/sale.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpInterceptorProviders } from './core/services/interceptors/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { SaleModule } from './features/sale/sale.module';
     SecurityModule,
     WarehouseModule,
     SaleModule,
+    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter
@@ -34,7 +37,7 @@ import { SaleModule } from './features/sale/sale.module';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument()
   ],
-  providers: [],
+  providers: [HttpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

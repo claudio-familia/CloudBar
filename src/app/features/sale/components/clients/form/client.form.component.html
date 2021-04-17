@@ -1,0 +1,6 @@
+<app-card [title]="title" [subtitle]="subtitle">
+    <app-dynamicform [form]="form" 
+                     [formGroup]="formGroup"                     
+                     [indexRoute]="'clients'" 
+                     (onSave)="createUpdateData($event)"></app-dynamicform>
+</app-card>

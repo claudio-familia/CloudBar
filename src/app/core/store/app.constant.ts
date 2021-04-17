@@ -1,5 +1,7 @@
 export const FeatureStates = {
     security: 'security',
     general: 'general',
-    warehouse: 'warehouse'
+    warehouse: 'warehouse',
+    sale: 'sales',
+    app: 'core',
 }

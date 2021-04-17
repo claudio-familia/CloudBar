@@ -3,8 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
+import { Person } from 'src/app/features/general/models/person';
+import { PeopleService } from 'src/app/features/general/services/people.service';
 import { BaseComponent } from 'src/app/features/shared/base/base.component';
+import { Role } from '../../../models/role';
 import { User } from '../../../models/user';
+import { RoleService } from '../../../services/role.service';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -18,15 +22,21 @@ export class UserFormComponent extends BaseComponent implements OnInit {
   userId: string;
   loadForm: boolean = false;
   selectedUser: User;
+  roles: Role[];
+  people:Person[];
 
   constructor(private _alertService: AlertService,
     private _userService: UserService,
+    private _roleService: RoleService,
+    private _peopleService: PeopleService,
     private _currentRoute: ActivatedRoute,
     private _router: Router) {
     super(_alertService)
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.getRoles();
+    await this.getPeople();
     this._currentRoute.params.subscribe(async param => {
       this.userId = param.id;
 
@@ -34,10 +44,30 @@ export class UserFormComponent extends BaseComponent implements OnInit {
         await this.getParameter();
       }
 
+      FORM[0].valueArray = this.roles;
+      FORM[0].valueFiltered = [...this.roles];
+      FORM[1].valueArray = this.people;
+      FORM[1].valueFiltered = [...this.people];
+
       this.form = [...FORM];
 
       this.formGroup = this.getFormGroup(this.form);
     });
+  }
+  async getPeople() {
+    await this._peopleService.get().toPromise().then(
+      res => {
+        this.people = res;
+      }
+    );
+  }
+
+  async getRoles() {
+    await this._roleService.get().toPromise().then(
+      res => {
+        this.roles = res;
+      }
+    );
   }
 
   async getParameter() {
@@ -80,6 +110,22 @@ export class UserFormComponent extends BaseComponent implements OnInit {
 
 const FORM: DynamicForm[] = [
   {
+    name: 'roleId',
+    value: '',
+    label: 'Role',
+    placeholder: 'Seleccione el rol del usuario',
+    type: 'select',
+    isRequired: true
+  },
+  {
+    name: 'personId',
+    value: '',
+    label: 'Persona',
+    type: 'select',
+    placeholder: 'Seleccione la persona del usuario',
+    isRequired: true
+  },
+  {
     name: 'username',
     value: '',
     label: 'Nombre de usuario',
@@ -100,23 +146,7 @@ const FORM: DynamicForm[] = [
     label: 'Confirmar contraseña',
     type: 'text',
     placeholder: 'Digete la contraseña del usuario',
-  },
-  {
-    name: 'roleId',
-    value: '',
-    label: 'Role',
-    placeholder: 'Seleccione el rol del usuario',
-    type: 'number',
-    isRequired: true
-  },
-  {
-    name: 'personId',
-    value: '',
-    label: 'Persona',
-    type: 'number',
-    placeholder: 'Seleccione la persona del usuario',
-    isRequired: true
-  }
+  },  
 ]
 
 function setFormValue(res: User) {

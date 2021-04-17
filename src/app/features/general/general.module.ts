@@ -10,6 +10,8 @@ import { PlaceComponent } from './components/place/place.component';
 import { ParameterComponent } from './components/parameter/parameter.component';
 import { ParameterFormComponent } from './components/parameter/form/parameter.form.component';
 import { PlaceFormComponent } from './components/place/form/place.form.component';
+import { EmployeeFormComponent } from './components/employee/form/employee.form.component';
+import { EmployeeComponent } from './components/employee/employee.component';
 
 
 
@@ -23,6 +25,8 @@ import { PlaceFormComponent } from './components/place/form/place.form.component
     PlaceFormComponent,
     ParameterComponent,
     ParameterFormComponent,
+    EmployeeComponent,
+    EmployeeFormComponent
   ],
   imports: [
     CommonModule,

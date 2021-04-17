@@ -13,8 +13,15 @@
                         <mat-cell *matCellDef="let row"> {{row[itemColumn] | date: 'dd-MM-yyyy' }} </mat-cell>
                     </div>
                     <div *ngIf="!isDate(itemColumn)">
-                        <mat-cell *matCellDef="let row"> {{ row[itemColumn] == '[object Object]' ? row[itemColumn].name ? row[itemColumn].name : row[itemColumn].description : row[itemColumn] }} </mat-cell>
-                    </div>
+                        <mat-cell *matCellDef="let row"> 
+                            <span *ngIf="row[itemColumn] && row[itemColumn].length > 38">
+                                {{ row[itemColumn] == '[object Object]' ? row[itemColumn].name ? row[itemColumn].name : row[itemColumn].description : row[itemColumn] | longStoryShort }} 
+                            </span>
+                            <span *ngIf="!(row[itemColumn] && row[itemColumn].length > 38)">
+                                {{ row[itemColumn] == '[object Object]' ? row[itemColumn].name ? row[itemColumn].name : row[itemColumn].description : row[itemColumn] }} 
+                            </span>
+                        </mat-cell>
+                    </div>                
                 </ng-container>
             </div>
             <ng-container matColumnDef="options" *ngIf="hasOptions">

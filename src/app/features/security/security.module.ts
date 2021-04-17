@@ -15,6 +15,7 @@ import { RoleComponent } from './components/roles/role.component';
 import { RoleFormComponent } from './components/roles/form/role.form.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { SelectPlaceComponent } from './components/select-place/select-place.component';
 
 
 
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     UserComponent,
     UserFormComponent,
     RoleComponent,
-    RoleFormComponent
+    RoleFormComponent,
+    SelectPlaceComponent
   ],
   imports: [
     CommonModule,

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { DynamicForm } from 'src/app/core/models/dynamic-form.model';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { AppState } from 'src/app/core/store/app.state';
+import { Place } from 'src/app/features/general/models/place';
+import { getCurrentPlace } from 'src/app/features/security/state/security.selector';
 import { BaseComponent } from 'src/app/features/shared/base/base.component';
 import { Category } from '../../../models/category';
 import { CategoryService } from '../../../services/category.service';
@@ -21,16 +25,25 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
   selectedCategory: Category;
   image: any;
   selectedImage: any;
+  currentPlace$: any;
+  currentPlace: Place;
 
   constructor(private _alertService: AlertService,
     private _categoryService: CategoryService,
     private _fireBaseService: FirebaseService,
     private _currentRoute: ActivatedRoute,
+    private _store: Store<AppState>,
     private _router: Router) {
     super(_alertService)
+    this.currentPlace$ = this._store.pipe(select(getCurrentPlace));
   }
 
   ngOnInit(): void {
+    this.currentPlace$.subscribe(
+      res => {
+        this.currentPlace = res;
+      }
+    )
     this._currentRoute.params.subscribe(async param => {
       this.categoryId = param.id;
 
@@ -68,6 +81,7 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
 
   async createUpdateData(data: any) {    
     if (this.categoryId) {
+      if(data.imgUrl == '') delete data.imgUrl;
       const category: Category = {
         ...this.selectedCategory,
         ...data,
@@ -90,6 +104,7 @@ export class CategoryFormComponent extends BaseComponent implements OnInit {
   }
 
   private createCategory(data: any) {
+    data.placeId = this.currentPlace.id;
     this._categoryService.create(data).subscribe(
       res => {
         this._fireBaseService.saveFileToStorage(`category-${res['id']}`, this.selectedImage).then((fileUploaded) => {

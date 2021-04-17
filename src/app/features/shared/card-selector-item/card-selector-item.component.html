@@ -1,4 +1,4 @@
-<mat-card class="mat-elevation-z8">
+<mat-card class="mat-elevation-z8" [ngClass]="{'selected' : isSelected}">
     <mat-card-content>
         <img [src]="img" [alt]="title" />
         <h1>{{title}}</h1>

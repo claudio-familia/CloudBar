@@ -8,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardSelectorItemComponent implements OnInit {
 
   @Input() title: string;
-  @Input() img: string;  
+  @Input() img: string;
+  @Input() isSelected: boolean = false;
 
   constructor() { }
 

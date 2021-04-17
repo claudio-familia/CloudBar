@@ -5,6 +5,7 @@ import { RoleComponent } from "../features/security/components/roles/role.compon
 import { UserFormComponent } from "../features/security/components/users/form/user.form.component";
 import { UserComponent } from "../features/security/components/users/user.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { PlaceGuard } from "./guards/place.guard";
 
 const SECURITY_ROUTES :Routes = [
     { path: 'login', component: LoginComponent },

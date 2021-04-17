@@ -1,6 +1,11 @@
 <div class="layout">
     <app-header></app-header>
-    <app-sidebar>
-        <ng-content></ng-content>
-    </app-sidebar>    
+    <app-sidebar *ngIf="roleId == '1'">
+        <ng-template [ngTemplateOutlet]="content"></ng-template>
+    </app-sidebar>
+    <ng-template  *ngIf="roleId != '1'" [ngTemplateOutlet]="content"></ng-template>
 </div>
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
