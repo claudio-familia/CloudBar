@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import settings from '../../../../appsettings.json';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
+
+  logo: string = settings.navbarLogo;
 
   ngOnInit(): void {
   }

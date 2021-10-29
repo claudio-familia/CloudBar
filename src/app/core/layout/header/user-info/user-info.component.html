@@ -2,12 +2,12 @@
     <div class="text-group">
         <h3 *ngIf="user">
             {{user.username}} <small *ngIf="place">({{place.name}})</small>
-        </h3>           
+        </h3>
     </div>
     <img src="../../../../../assets/images/navbar/profile-user.png" />
 </div>
 <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="personalInformation()">
         <mat-icon>manage_accounts</mat-icon>
         <span>Información de usuario</span>
     </button>
