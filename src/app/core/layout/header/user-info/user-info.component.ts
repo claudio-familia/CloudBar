@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
+import { ChangeAppInfoComponent } from 'src/app/features/security/components/change-app-info/change-app-info.component';
 import { SelectPlaceComponent } from 'src/app/features/security/components/select-place/select-place.component';
 import { AuthService } from 'src/app/features/security/services/auth.service';
 import { getCurrentPlace, getCurrentUser } from 'src/app/features/security/state/security.selector';
@@ -41,6 +42,10 @@ export class UserInfoComponent implements OnInit {
 
   changePlace(){
     this.dialog.open(SelectPlaceComponent, <MatDialogConfig>{width: '500px', disableClose: false});
+  }
+
+  personalInformation(){
+    this.dialog.open(ChangeAppInfoComponent, <MatDialogConfig>{width: '500px', disableClose: false});
   }
 
 }

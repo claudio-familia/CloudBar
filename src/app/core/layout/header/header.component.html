@@ -1,5 +1,5 @@
-<mat-toolbar class="nav-header" color="primary">    
-    <img routerLink="home" src="../../../../assets/images/navbar/cocktail.png" />
+<mat-toolbar class="nav-header" color="primary">
+    <img routerLink="home" [src]="'../../../../'+logo" />
     <span routerLink="home">CloudBar</span>
     <span class="header-spacer"></span>
     <app-user-info></app-user-info>

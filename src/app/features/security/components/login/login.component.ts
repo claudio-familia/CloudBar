@@ -5,6 +5,7 @@ import { AppState } from 'src/app/core/store/app.state';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { AuthService } from '../../services/auth.service';
 import * as userActions from '../../state/actions/user.actions';
+import settings from '../../../../../appsettings.json';
 
 @Component({
     selector: 'app-login',	
@@ -16,6 +17,7 @@ export class LoginComponent {
     username: string;
     password: string;
     errorTitle: string = 'Error al validar';
+    logo: string = settings.loginLogo;
 
     constructor(private _authService: AuthService, 
                 private _alertService: AlertService,
