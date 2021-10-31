@@ -15,6 +15,7 @@ import { SaleModule } from './features/sale/sale.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './core/services/interceptors/http.interceptor';
 import { AuthModule } from '@auth0/auth0-angular';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,12 @@ import { AuthModule } from '@auth0/auth0-angular';
     HttpClientModule,
     AuthModule.forRoot({
       domain: 'dev-acddag2p.us.auth0.com',
-      clientId: 'z6SRkmw3AGX4AftU0vSVJdezFdwzpBTV'
+      clientId: 'z6SRkmw3AGX4AftU0vSVJdezFdwzpBTV',
+      redirectUri: window.location.origin,
     }),    
     StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([])
   ],
   providers: [HttpInterceptorProviders],
   bootstrap: [AppComponent]

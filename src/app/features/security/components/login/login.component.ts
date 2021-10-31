@@ -1,54 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/store/app.state';
-import { AlertService } from 'src/app/core/services/alert.service';
-import { AuthService } from '../../services/auth.service';
-import * as userActions from '../../state/actions/user.actions';
+import { select, Store } from '@ngrx/store';
 import settings from '../../../../../appsettings.json';
+import { SecurityState } from '../../state/security.state';
+import * as securityActions from '../../state/actions/auth0.actions';
+import { hasLogin } from '../../state/security.selector';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-login',	
+    selector: 'app-login',
     templateUrl: `login.component.html`,
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-    hidePassword:boolean = true;
-    username: string;
-    password: string;
-    errorTitle: string = 'Error al validar';
+export class LoginComponent implements OnInit {
     logo: string = settings.loginLogo;
 
-    constructor(private _authService: AuthService, 
-                private _alertService: AlertService,
-                private _router: Router,
-                private _store: Store<AppState>) {
+    constructor(private _store: Store<SecurityState>, private router: Router) {
     }
-    
-    login(){
-        const response = this._authService.signIn(this.username, this.password);
-        response.subscribe(
-            res => {
-                localStorage.setItem('api-token', res.token);
-                localStorage.setItem('app-user', res.username);                
 
-                this._store.dispatch(userActions.setCurrentUser({currentUser: res}));
-                this._store.dispatch(userActions.setWheterHasLoggedIn({isLoggedIn: true}));
-
-                window.location.href = '/home';
-            },
-            error => {
-                switch(error.status){
-                    case 401: 
-                        this._alertService.ToasterNotification(this.errorTitle, 'Usuario o contraseña invalida', 'error');
-                    break;
-                    case 404:
-                        this._alertService.ToasterNotification(this.errorTitle, 'Este usuario no existe', 'error');
-                    break;                    
-                    default:
-                        this._alertService.ToasterNotification(this.errorTitle, 'Ha ocurrido un error en el servicio', 'error');
-                }
+    ngOnInit(): void {
+        this._store.select(hasLogin).subscribe(
+            res => { 
+                if(res) this.router.navigateByUrl('/home')
             }
         );
-    }    
+    }
+
+    login() {
+        this._store.dispatch(securityActions.login());
+    }
 }

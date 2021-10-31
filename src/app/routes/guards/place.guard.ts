@@ -30,11 +30,12 @@ export class PlaceGuard implements CanActivate {
         const placeSelector = this.store.select(getCurrentPlace);
         return placeSelector.pipe(
             map(currentPlace => {
-                if (currentPlace) {
-                    return true;
-                }else{                    
-                    window.location.href = '/home'
-                }
+                return true;
+                // if (currentPlace) {
+                //     return true;
+                // }else{                    
+                //     window.location.href = '/home'
+                // }
             })
         );
     }

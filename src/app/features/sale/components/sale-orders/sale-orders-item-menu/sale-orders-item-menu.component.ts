@@ -47,8 +47,7 @@ export class SalesOrderItemMenuComponent extends BaseComponent implements OnInit
         )
     }
 
-    selectCategory(categoryName: string){ 
-        console.log(categoryName)
+    selectCategory(categoryName: string){
         this.searchProducts(categoryName);
     }
 

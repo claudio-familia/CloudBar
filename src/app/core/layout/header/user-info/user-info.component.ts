@@ -4,8 +4,9 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { ChangeAppInfoComponent } from 'src/app/features/security/components/change-app-info/change-app-info.component';
 import { SelectPlaceComponent } from 'src/app/features/security/components/select-place/select-place.component';
-import { AuthService } from 'src/app/features/security/services/auth.service';
+import { AuthenticationService } from 'src/app/features/security/services/authentication.service';
 import { getCurrentPlace, getCurrentUser } from 'src/app/features/security/state/security.selector';
+import { logout } from 'src/app/features/security/state/actions/auth0.actions';
 
 @Component({
   selector: 'app-user-info',
@@ -18,7 +19,7 @@ export class UserInfoComponent implements OnInit {
   place: any;
   user: any;
 
-  constructor(private _authService: AuthService, private _store: Store<AppState>, public dialog: MatDialog) { 
+  constructor(private _authService: AuthenticationService, private _store: Store<AppState>, public dialog: MatDialog) { 
     this.currentPlace$ = this._store.pipe(select(getCurrentPlace));
     this.currentUser$ = this._store.pipe(select(getCurrentUser));
   }
@@ -37,7 +38,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   logout(){    
-    this._authService.signOut();
+    this._store.dispatch(logout());
   }
 
   changePlace(){

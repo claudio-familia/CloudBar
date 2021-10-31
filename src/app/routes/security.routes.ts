@@ -8,7 +8,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { PlaceGuard } from "./guards/place.guard";
 
 const SECURITY_ROUTES :Routes = [
-    { path: 'login', component: LoginComponent },
+    { path: 'dashboard', component: LoginComponent },
     
     { path: 'users', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'users/create', component: UserFormComponent, canActivate: [AuthGuard] },
