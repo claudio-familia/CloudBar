@@ -14,6 +14,7 @@ import { WarehouseModule } from './features/warehouse/warehouse.module';
 import { SaleModule } from './features/sale/sale.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './core/services/interceptors/http.interceptor';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -29,11 +30,10 @@ import { HttpInterceptorProviders } from './core/services/interceptors/http.inte
     WarehouseModule,
     SaleModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter
-      }
-    }),
+    AuthModule.forRoot({
+      domain: 'dev-acddag2p.us.auth0.com',
+      clientId: 'z6SRkmw3AGX4AftU0vSVJdezFdwzpBTV'
+    }),    
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument()
   ],
@@ -41,7 +41,3 @@ import { HttpInterceptorProviders } from './core/services/interceptors/http.inte
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function tokenGetter() {
-  return localStorage.getItem('api-token');
-}
