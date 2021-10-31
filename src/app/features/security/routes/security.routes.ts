@@ -1,11 +1,11 @@
 import { Routes } from "@angular/router";
-import { LoginComponent } from "../features/security/components/login/login.component";
-import { RoleFormComponent } from "../features/security/components/roles/form/role.form.component";
-import { RoleComponent } from "../features/security/components/roles/role.component";
-import { UserFormComponent } from "../features/security/components/users/form/user.form.component";
-import { UserComponent } from "../features/security/components/users/user.component";
-import { AuthGuard } from "./guards/auth.guard";
-import { PlaceGuard } from "./guards/place.guard";
+import { LoginComponent } from "../components/login/login.component";
+import { RoleFormComponent } from "../components/roles/form/role.form.component";
+import { RoleComponent } from "../components/roles/role.component";
+import { UserFormComponent } from "../components/users/form/user.form.component";
+import { UserComponent } from "../components/users/user.component";
+import { AuthGuard } from "../../../routes/guards/auth.guard";
+import { PlaceGuard } from "../../../routes/guards/place.guard";
 
 const SECURITY_ROUTES :Routes = [
     { path: 'dashboard', component: LoginComponent },

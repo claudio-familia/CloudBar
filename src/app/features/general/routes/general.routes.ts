@@ -1,19 +1,17 @@
 import { Routes } from "@angular/router";
-import { EmployeeComponent } from "../features/general/components/employee/employee.component";
-import { EmployeeFormComponent } from "../features/general/components/employee/form/employee.form.component";
-import { HomeComponent } from "../features/general/components/home/home.component";
-import { ParameterFormComponent } from "../features/general/components/parameter/form/parameter.form.component";
-import { ParameterComponent } from "../features/general/components/parameter/parameter.component";
-import { PeopleFormComponent } from "../features/general/components/people/form/people.form.component";
-import { PeopleComponent } from "../features/general/components/people/people.component";
-import { PlaceFormComponent } from "../features/general/components/place/form/place.form.component";
-import { PlaceComponent } from "../features/general/components/place/place.component";
-import { AuthGuard } from "./guards/auth.guard";
-import { PlaceGuard } from "./guards/place.guard";
+import { EmployeeComponent } from "../components/employee/employee.component";
+import { EmployeeFormComponent } from "../components/employee/form/employee.form.component";
+import { HomeComponent } from "../components/home/home.component";
+import { ParameterFormComponent } from "../components/parameter/form/parameter.form.component";
+import { ParameterComponent } from "../components/parameter/parameter.component";
+import { PeopleFormComponent } from "../components/people/form/people.form.component";
+import { PeopleComponent } from "../components/people/people.component";
+import { PlaceFormComponent } from "../components/place/form/place.form.component";
+import { PlaceComponent } from "../components/place/place.component";
+import { AuthGuard } from "../../../routes/guards/auth.guard";
+import { PlaceGuard } from "../../../routes/guards/place.guard";
 
-const GENERAL_ROUTES :Routes = [
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    
+const GENERAL_ROUTES :Routes = [       
     { path: 'people', component: PeopleComponent, canActivate: [AuthGuard] },
     { path: 'people/create', component: PeopleFormComponent, canActivate: [AuthGuard, PlaceGuard] },
     { path: 'people/edit/:id', component: PeopleFormComponent, canActivate: [AuthGuard, PlaceGuard] },

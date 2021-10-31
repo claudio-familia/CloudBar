@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { StoreModule } from "@ngrx/store";
 import { CoreModule } from "src/app/core/core.module";
@@ -16,6 +15,7 @@ import { SalesOrderItemViewComponent } from "./components/sale-orders/sale-order
 import { SalesOrderViewComponent } from "./components/sale-orders/sale-orders-view/sale-orders-view.component";
 import { SaleOrdersComponent } from "./components/sale-orders/sale-orders.component";
 import { SalesOrderAddComponent } from "./components/sale-orders/sales-ordes-new/sale-orders-new.component";
+import { SalesRoutingModule } from "./routes/sale-routing.module";
 import { saleReducer } from "./state/sale.reducer";
 
 @NgModule({
@@ -36,8 +36,8 @@ import { saleReducer } from "./state/sale.reducer";
         CoreModule,
         SharedModule,
         FormsModule,
-        BrowserModule,
         ReactiveFormsModule,
+        SalesRoutingModule,
         StoreModule.forFeature(FeatureStates.sale, saleReducer)
     ],
 })

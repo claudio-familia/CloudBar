@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import routes from './routes/routes';
+import SALE_ROUTES from './sale.routes';
+
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(SALE_ROUTES)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class SalesRoutingModule { }

@@ -9,6 +9,7 @@ import { CategoryFormComponent } from './components/category/form/category.form.
 import { RouterModule } from '@angular/router';
 import { ItemFormComponent } from './components/items/form/item.form.component';
 import { ItemComponent } from './components/items/item.component';
+import { WarehouseRoutingModule } from './routes/warehouse-routing.module';
 
 
 
@@ -26,7 +27,8 @@ import { ItemComponent } from './components/items/item.component';
     CoreModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    WarehouseRoutingModule
   ],
 })
 export class WarehouseModule { }

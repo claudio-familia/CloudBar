@@ -10,6 +10,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { CardSelectorItemComponent } from "./card-selector-item/card-selector-item.component";
 import { BusinessCardComponent } from "./business-card/business-card.component";
 import { ProductCardComponent } from "./product-card/product-card.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const maskConfig: Partial<IConfig> = {
     validation: false,
@@ -20,7 +22,9 @@ const maskConfig: Partial<IConfig> = {
         CommonModule,
         ReactiveFormsModule,
         CoreModule,
-        RouterModule,
+        RouterModule,        
+        BrowserModule,
+        BrowserAnimationsModule,
         NgxMaskModule.forRoot(maskConfig),
     ],
     declarations: [
@@ -37,7 +41,9 @@ const maskConfig: Partial<IConfig> = {
         DynamictableComponent,
         CardSelectorItemComponent,
         BusinessCardComponent,
-        ProductCardComponent
+        ProductCardComponent,
+        BrowserModule,
+        BrowserAnimationsModule,
     ]
 })
 export class SharedModule { }
