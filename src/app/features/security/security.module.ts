@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { FeatureStates } from 'src/app/core/store/app.constant';
 import { securityReducer } from './state/security.reducer';
-import { JwtModule } from '@auth0/angular-jwt'
 import { UserComponent } from './components/users/user.component';
 import { UserFormComponent } from './components/users/form/user.form.component';
 import { RoleComponent } from './components/roles/role.component';
@@ -19,6 +18,7 @@ import { SelectPlaceComponent } from './components/select-place/select-place.com
 import { ChangeAppInfoComponent } from './components/change-app-info/change-app-info.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/security.effects';
+import { SecurityRoutingModule } from './routes/security-routing.module';
 
 
 
@@ -38,13 +38,10 @@ import { AuthEffects } from './state/security.effects';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    RouterModule,
-    JwtModule,
+    RouterModule,    
+    SecurityRoutingModule,
     StoreModule.forFeature(FeatureStates.security, securityReducer),
     EffectsModule.forFeature([AuthEffects])
   ],
-  exports: [
-    JwtModule
-  ]
 })
 export class SecurityModule { }

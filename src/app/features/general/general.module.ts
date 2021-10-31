@@ -12,6 +12,7 @@ import { ParameterFormComponent } from './components/parameter/form/parameter.fo
 import { PlaceFormComponent } from './components/place/form/place.form.component';
 import { EmployeeFormComponent } from './components/employee/form/employee.form.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { GeneralRoutingModule } from './routes/gerneral-routing.module';
 
 
 
@@ -32,7 +33,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
     CommonModule,
     CoreModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    GeneralRoutingModule
   ]
 })
 export class GeneralModule { }
