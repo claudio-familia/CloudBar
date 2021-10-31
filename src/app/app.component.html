@@ -1,13 +1,15 @@
 <div [ngClass]="{'passive' : isLoading}">
     <app-loading *ngIf="isLoading"></app-loading>
-    <div *ngIf="hasLoggin">
+    <div *ngIf="loggedIn$ | async as loggedIn; else loginContent">
         <app-layout>
             <router-outlet></router-outlet>
         </app-layout>
     </div>
-    <div *ngIf="!hasLoggin">
-        <app-layout-login >
-            <router-outlet></router-outlet>
-        </app-layout-login>
-    </div>
+    <ng-template #loginContent>
+        <div>
+            <app-layout-login>
+                <router-outlet></router-outlet>
+            </app-layout-login>
+        </div>
+    </ng-template>
 </div>

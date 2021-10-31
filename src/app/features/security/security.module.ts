@@ -17,6 +17,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { SelectPlaceComponent } from './components/select-place/select-place.component';
 import { ChangeAppInfoComponent } from './components/change-app-info/change-app-info.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/security.effects';
 
 
 
@@ -38,7 +40,8 @@ import { ChangeAppInfoComponent } from './components/change-app-info/change-app-
     HttpClientModule,
     RouterModule,
     JwtModule,
-    StoreModule.forFeature(FeatureStates.security, securityReducer)
+    StoreModule.forFeature(FeatureStates.security, securityReducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
   exports: [
     JwtModule

@@ -2,6 +2,7 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
 import * as appState from '../../../core/store/app.state';
 import * as userActions from './actions/user.actions';
+import * as authActions from './actions/auth0.actions';
 import { SecurityState } from './security.state';
 
 export interface State extends appState.AppState {
@@ -16,22 +17,24 @@ const initState: SecurityState  = {
 
 export const securityReducer = createReducer<SecurityState>(
     initState,
-    on(userActions.setCurrentUser, (state, action): SecurityState => {
-      return {
-        ...state,
-        currentUser: action.currentUser
-      };
-    }),
     on(userActions.setCurrentPlace, (state, action): SecurityState => {
       return {
         ...state,
         currentPlace: action.currentPlace
       };
     }),
-    on(userActions.setWheterHasLoggedIn, (state, action): SecurityState => {
+    on(authActions.loginComplete, (state, { profile, isLoggedIn }) => {
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn
+        currentUser: profile,
+        isLoggedIn,
+      };
+    }),  
+    on(authActions.logoutComplete, (state, {}) => {
+      return {
+        ...state,
+        currentUser: null,
+        isLoggedIn: false,
       };
     })
 );
