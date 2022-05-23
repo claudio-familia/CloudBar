@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     }else{
       this.currentPlace$.subscribe(
         res => {
-          if(!res){
+          if(!res && this.hasLoggin){
             this.dialog.open(SelectPlaceComponent, <MatDialogConfig>{width: '500px', disableClose: false});
           }
         }
